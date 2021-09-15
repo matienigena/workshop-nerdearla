@@ -39,10 +39,8 @@ public class PaymentsService {
 
         PaymentOperation operation = new PaymentOperation();
 
-        // Validar Fraude
         fraudService.authorize(operation);
 
-        // Llamar a NotDecidir
         gatewayService.authorize(operation);
 
         return new PaymentResponse();
