@@ -5,16 +5,11 @@ import com.nerdearla.workshop.dto.payment.PaymentRequest;
 
 public class PaymentOperation {
 
-    private PaymentRequest paymentRequest;
-
     private String paymentId;
-
-    private String qrId;
-
+    private PaymentRequest paymentRequest;
+    private QR qr;
     private Buyer buyer;
-
     private Seller seller;
-
     private PaymentMethod paymentMethod;
 
     public PaymentOperation(PaymentRequest paymentRequest) {
@@ -35,14 +30,6 @@ public class PaymentOperation {
 
     public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
-    }
-
-    public String getQrId() {
-        return qrId;
-    }
-
-    public void setQrId(String qrId) {
-        this.qrId = qrId;
     }
 
     public Buyer getBuyer() {
@@ -67,5 +54,13 @@ public class PaymentOperation {
 
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public QR getQr() {
+        return qr;
+    }
+
+    public void setQr(QR qr) {
+        this.qr = qr;
     }
 }

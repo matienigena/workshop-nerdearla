@@ -1,12 +1,12 @@
 package com.nerdearla.workshop.service;
 
 import com.nerdearla.workshop.dto.payment.PaymentResponse;
-import com.nerdearla.workshop.model.PaymentOperation;
-import com.nerdearla.workshop.model.User;
+import com.nerdearla.workshop.model.*;
+import com.nerdearla.workshop.repository.PaymentRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PaymentsService {
+public class PaymentService {
 
     private final PaymentIdProvider paymentIdProvider;
     private final UserService userService;
@@ -15,15 +15,19 @@ public class PaymentsService {
     private final GatewayService gatewayService;
     private final BuyerService buyerService;
     private final SellerService sellerService;
+    private final QRService qrService;
+    private final PaymentRepository paymentRepository;
 
-    public PaymentsService(
+    public PaymentService(
             PaymentIdProvider paymentIdProvider,
             UserService userService,
             PaymentMethodService paymentMethodService,
             FraudService fraudService,
             GatewayService gatewayService,
             BuyerService buyerService,
-            SellerService sellerService
+            SellerService sellerService,
+            PaymentRepository paymentRepository,
+            QRService qrService
     ) {
         this.paymentIdProvider = paymentIdProvider;
         this.userService = userService;
@@ -32,6 +36,8 @@ public class PaymentsService {
         this.gatewayService = gatewayService;
         this.buyerService = buyerService;
         this.sellerService = sellerService;
+        this.paymentRepository = paymentRepository;
+        this.qrService = qrService;
     }
 
     public PaymentResponse processPayment(PaymentOperation operation) {
@@ -39,6 +45,8 @@ public class PaymentsService {
         operation.setPaymentId(id);
 
         // validar qr_id?
+        QR qr = qrService.findValidQR(operation.getPaymentRequest().getQrId());
+        operation.setQr(qr);
 
         // validar amount e installments?
 
@@ -53,7 +61,10 @@ public class PaymentsService {
 
         fraudService.authorize(operation);
 
-        gatewayService.authorize(operation);
+        PaymentAuthorization authorization = gatewayService.authorize(operation);
+
+        Payment payment = new Payment.PaymentBuilder(operation, authorization).build();
+        paymentRepository.save(payment);
 
         return new PaymentResponse();
     }
