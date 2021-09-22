@@ -1,12 +1,11 @@
 package com.nerdearla.workshop.model;
 
-import com.nerdearla.workshop.dto.payment.PaymentMethod;
 import com.nerdearla.workshop.dto.payment.PaymentRequest;
 
 public class PaymentOperation {
 
+    private final PaymentRequest paymentRequest;
     private String paymentId;
-    private PaymentRequest paymentRequest;
     private QR qr;
     private Buyer buyer;
     private Seller seller;
@@ -18,10 +17,6 @@ public class PaymentOperation {
 
     public PaymentRequest getPaymentRequest() {
         return paymentRequest;
-    }
-
-    public void setPaymentRequest(PaymentRequest paymentRequest) {
-        this.paymentRequest = paymentRequest;
     }
 
     public String getPaymentId() {
