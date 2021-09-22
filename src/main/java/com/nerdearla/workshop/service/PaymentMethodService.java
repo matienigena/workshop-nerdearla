@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PaymentMethodService {
-    public void authorize(PaymentMethod paymentMethod) {
 
+    public void authorize(PaymentMethod paymentMethod) {
     }
 }

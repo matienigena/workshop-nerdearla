@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BuyerService {
 
+    // Llamada a service externo
     public Buyer findBuyer(String buyerId) {
         return new Buyer();
     }

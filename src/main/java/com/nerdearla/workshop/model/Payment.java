@@ -10,6 +10,14 @@ public class Payment {
         this.authorizationId = builder.authorizationId;
     }
 
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public String getAuthorizationId() {
+        return authorizationId;
+    }
+
     public static class PaymentBuilder {
 
         private final String paymentId;
