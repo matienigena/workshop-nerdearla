@@ -1,8 +1,8 @@
 package com.nerdearla.workshop.service;
 
-import com.nerdearla.workshop.dto.payment.PaymentRequest;
 import com.nerdearla.workshop.dto.payment.PaymentResponse;
 import com.nerdearla.workshop.model.PaymentOperation;
+import com.nerdearla.workshop.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,31 +13,43 @@ public class PaymentsService {
     private final PaymentMethodService paymentMethodService;
     private final FraudService fraudService;
     private final GatewayService gatewayService;
+    private final BuyerService buyerService;
+    private final SellerService sellerService;
 
     public PaymentsService(
             PaymentIdProvider paymentIdProvider,
             UserService userService,
             PaymentMethodService paymentMethodService,
             FraudService fraudService,
-            GatewayService gatewayService
+            GatewayService gatewayService,
+            BuyerService buyerService,
+            SellerService sellerService
     ) {
         this.paymentIdProvider = paymentIdProvider;
         this.userService = userService;
         this.paymentMethodService = paymentMethodService;
         this.fraudService = fraudService;
         this.gatewayService = gatewayService;
+        this.buyerService = buyerService;
+        this.sellerService = sellerService;
     }
 
-    public PaymentResponse processPayment(PaymentRequest paymentRequest) {
+    public PaymentResponse processPayment(PaymentOperation operation) {
         String id = paymentIdProvider.getNext();
+        operation.setPaymentId(id);
 
-        userService.findValidUser(paymentRequest.getBuyerId());
+        // validar qr_id?
 
-        paymentMethodService.authorize(paymentRequest.getPaymentMethod());
+        // validar amount e installments?
 
-        userService.findValidUser(paymentRequest.getSellerId());
+        User buyer = userService.findValidUser(operation.getPaymentRequest().getBuyerId());
+        operation.setBuyer(buyerService.findBuyer(buyer.getId()));
 
-        PaymentOperation operation = new PaymentOperation();
+        // Obtener paymentMethod y agregarlo a operation?
+        paymentMethodService.authorize(operation.getPaymentRequest().getPaymentMethod());
+
+        User seller = userService.findValidUser(operation.getPaymentRequest().getSellerId());
+        operation.setSeller(sellerService.findSeller(seller.getId()));
 
         fraudService.authorize(operation);
 

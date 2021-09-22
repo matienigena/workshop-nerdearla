@@ -4,17 +4,17 @@ public class PaymentRequest {
 
     private String qrId;
 
-    private Long buyerId;
+    private String buyerId;
 
-    private Long sellerId;
+    private String sellerId;
 
     private Double amount;
 
     private Integer installments;
 
-    private PaymentMethod paymentMethod;
-
     private TerminalData terminalData;
+
+    private PaymentMethod paymentMethod;
 
     public String getQrId() {
         return qrId;
@@ -24,19 +24,19 @@ public class PaymentRequest {
         this.qrId = qrId;
     }
 
-    public Long getBuyerId() {
+    public String getBuyerId() {
         return buyerId;
     }
 
-    public void setBuyerId(Long buyerId) {
+    public void setBuyerId(String buyerId) {
         this.buyerId = buyerId;
     }
 
-    public Long getSellerId() {
+    public String getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(Long sellerId) {
+    public void setSellerId(String sellerId) {
         this.sellerId = sellerId;
     }
 

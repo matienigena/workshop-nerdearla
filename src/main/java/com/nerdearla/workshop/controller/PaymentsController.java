@@ -24,7 +24,7 @@ public class PaymentsController {
 
     @PostMapping
     public PaymentResponse processPayment(@Valid @RequestBody PaymentRequest paymentRequest) {
-
-        return paymentsService.processPayment(paymentRequest);
+        PaymentOperation operation = new PaymentOperation(paymentRequest);
+        return paymentsService.processPayment(operation);
     }
 }

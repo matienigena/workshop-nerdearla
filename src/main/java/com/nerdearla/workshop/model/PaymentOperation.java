@@ -1,8 +1,11 @@
 package com.nerdearla.workshop.model;
 
+import com.nerdearla.workshop.dto.payment.PaymentMethod;
 import com.nerdearla.workshop.dto.payment.PaymentRequest;
 
 public class PaymentOperation {
+
+    private PaymentRequest paymentRequest;
 
     private String paymentId;
 
@@ -12,22 +15,57 @@ public class PaymentOperation {
 
     private Seller seller;
 
-    private PaymentOperation(){}
+    private PaymentMethod paymentMethod;
 
+    public PaymentOperation(PaymentRequest paymentRequest) {
+        this.paymentRequest = paymentRequest;
+    }
 
-    public class Builder {
+    public PaymentRequest getPaymentRequest() {
+        return paymentRequest;
+    }
 
-        private Long buyerId;
+    public void setPaymentRequest(PaymentRequest paymentRequest) {
+        this.paymentRequest = paymentRequest;
+    }
 
+    public String getPaymentId() {
+        return paymentId;
+    }
 
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
+    }
 
-        public Builder fromPaymentRequest(PaymentRequest paymentRequest) {
+    public String getQrId() {
+        return qrId;
+    }
 
-        }
+    public void setQrId(String qrId) {
+        this.qrId = qrId;
+    }
 
-        public PaymentOperation build() {
-            PaymentOperation paymentOperation = new PaymentOperation();
-            return paymentOperation;
-        }
+    public Buyer getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }
