@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentMethodService {
 
-    public void authorize(PaymentMethod paymentMethod) {
+    public com.nerdearla.workshop.model.PaymentMethod authorize(PaymentMethod paymentMethod) {
+        return new com.nerdearla.workshop.model.PaymentMethod();
     }
 }

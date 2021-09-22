@@ -40,7 +40,7 @@ public class PaymentService {
         this.qrService = qrService;
     }
 
-    public PaymentResponse processPayment(PaymentOperation operation) {
+    public Payment processPayment(PaymentOperation operation) {
         String id = paymentIdProvider.getNext();
         operation.setPaymentId(id);
 
@@ -54,11 +54,13 @@ public class PaymentService {
         operation.setBuyer(buyerService.findBuyer(buyer.getId()));
 
         // Obtener paymentMethod y agregarlo a operation?
-        paymentMethodService.authorize(operation.getPaymentRequest().getPaymentMethod());
+        PaymentMethod paymentMethod = paymentMethodService.authorize(operation.getPaymentRequest().getPaymentMethod());
+        operation.setPaymentMethod(paymentMethod);
 
         User seller = userService.findValidUser(operation.getPaymentRequest().getSellerId());
         operation.setSeller(sellerService.findSeller(seller.getId()));
 
+        // FraudResult que se persista
         fraudService.authorize(operation);
 
         PaymentAuthorization authorization = gatewayService.authorize(operation);
@@ -66,6 +68,6 @@ public class PaymentService {
         Payment payment = new Payment.PaymentBuilder(operation, authorization).build();
         paymentRepository.save(payment);
 
-        return new PaymentResponse();
+        return payment;
     }
 }
