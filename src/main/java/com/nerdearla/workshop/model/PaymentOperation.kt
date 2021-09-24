@@ -1,44 +1,42 @@
 package com.nerdearla.workshop.model
 
-import com.nerdearla.workshop.dto.payment.TerminalData
-import com.nerdearla.workshop.model.Payment.PaymentBuilder
-import com.nerdearla.workshop.model.PaymentOperation
-import com.nerdearla.workshop.model.PaymentAuthorization
-import com.nerdearla.workshop.model.Payment
 import com.nerdearla.workshop.dto.payment.PaymentRequest
-import com.nerdearla.workshop.model.QR
-import com.nerdearla.workshop.model.Buyer
-import com.nerdearla.workshop.model.Seller
-import com.nerdearla.workshop.dto.payment.PaymentResponse
-import com.nerdearla.workshop.service.PaymentIdProvider
-import com.nerdearla.workshop.service.UserService
-import com.nerdearla.workshop.service.PaymentMethodService
-import com.nerdearla.workshop.service.FraudService
-import com.nerdearla.workshop.service.GatewayService
-import com.nerdearla.workshop.service.BuyerService
-import com.nerdearla.workshop.service.SellerService
-import com.nerdearla.workshop.repository.PaymentRepository
-import com.nerdearla.workshop.service.QRService
-import org.springframework.web.bind.annotation.RestControllerAdvice
-import org.springframework.http.converter.HttpMessageNotReadableException
-import org.springframework.http.HttpStatus
-import com.nerdearla.workshop.dto.error.APIError
-import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.bind.annotation.RequestMapping
-import com.nerdearla.workshop.service.PaymentService
-import com.nerdearla.workshop.mapper.PaymentResponseMapper
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import javax.validation.Valid
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import kotlin.jvm.JvmStatic
-import org.springframework.boot.SpringApplication
+import com.nerdearla.workshop.dto.payment.TerminalData
 
-class PaymentOperation(val paymentRequest: PaymentRequest?) {
-    var paymentId: String? = null
-    var qr: QR? = null
-    var buyer: Buyer? = null
-    var seller: Seller? = null
-    var paymentMethod: PaymentMethod? = null
+data class PaymentOperation(
+    val paymentRequest: PaymentRequest,
+    val paymentId: String? = null,
+    val qr: QR? = null,
+    val buyer: Buyer? = null,
+    val seller: Seller? = null,
+    val paymentMethod: PaymentMethod? = null,
+)
 
-}
+data class InitialOperation(
+    val qrId: String,
+    val buyerId: String,
+    val sellerId: String,
+    val amount: Double,
+    val installments: Int = 1,
+    val terminalData: TerminalData,
+    val paymentMethod: com.nerdearla.workshop.dto.payment.PaymentMethod
+)
+
+data class FullOperation(
+    val paymentId: String,
+    val qr: QR,
+    val paymentMethod: PaymentMethod,
+    val seller: Seller,
+    val buyer: Buyer,
+    val terminalData: TerminalData
+)
+
+data class AuthorizedOperation(
+    val authorizationId: String,
+    val paymentId: String,
+    val qr: QR,
+    val paymentMethod: PaymentMethod,
+    val seller: Seller,
+    val buyer: Buyer,
+    val terminalData: TerminalData
+)
