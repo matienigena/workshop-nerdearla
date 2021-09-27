@@ -1,5 +1,6 @@
 package com.nerdearla.workshop.model
 
+import com.nerdearla.workshop.dto.payment.PaymentMethodData
 import com.nerdearla.workshop.dto.payment.PaymentRequest
 import com.nerdearla.workshop.dto.payment.TerminalData
 
@@ -19,24 +20,17 @@ data class InitialOperation(
     val amount: Double,
     val installments: Int = 1,
     val terminalData: TerminalData,
-    val paymentMethod: com.nerdearla.workshop.dto.payment.PaymentMethod
+    val paymentMethodData: PaymentMethodData
 )
 
 data class FullOperation(
     val paymentId: String,
     val qr: QR,
     val paymentMethod: PaymentMethod,
+    val amount: Double,
+    val installments: Int = 1,
     val seller: Seller,
     val buyer: Buyer,
-    val terminalData: TerminalData
-)
-
-data class AuthorizedOperation(
-    val authorizationId: String,
-    val paymentId: String,
-    val qr: QR,
-    val paymentMethod: PaymentMethod,
-    val seller: Seller,
-    val buyer: Buyer,
-    val terminalData: TerminalData
+    val terminalData: TerminalData,
+    val authorization: PaymentAuthorization? = null
 )

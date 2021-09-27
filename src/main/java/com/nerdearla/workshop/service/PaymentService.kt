@@ -1,8 +1,8 @@
 package com.nerdearla.workshop.service
 
 import com.nerdearla.workshop.model.*
-import com.nerdearla.workshop.model.Payment.PaymentBuilder
 import com.nerdearla.workshop.repository.PaymentRepository
+import com.nerdearla.workshop.service.provider.AuthorizedOperationProvider
 import com.nerdearla.workshop.service.provider.FullOperationProvider
 import org.springframework.stereotype.Service
 
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service
 class PaymentService(
     private val fullOperationProvider: FullOperationProvider,
     private val fraudService: FraudService,
-    private val gatewayService: GatewayService,
     private val paymentRepository: PaymentRepository,
+    private val authorizedOperationProvider: AuthorizedOperationProvider
 ) {
     //quitamos el nulo de la respuesta
 
@@ -32,11 +32,21 @@ class PaymentService(
     private fun FullOperation.validateFraud() =
         fraudService.authorize(this)
 
-    private fun FullOperation.authorize(): AuthorizedOperation =
-        gatewayService.authorize(this)
+    private fun FullOperation.authorize(): FullOperation =
+        authorizedOperationProvider.provide(this)
 
-    private fun AuthorizedOperation.toPayment() =
-        PaymentBuilder(first, second).build()
+
+    private fun FullOperation.toPayment() =
+        Payment(
+            paymentId = paymentId,
+            amount = amount,
+            authorizationId = authorization!!.id,
+            traceNumber = authorization.traceNumber,
+            buyerId = buyer.buyerId,
+            sellerId = seller.sellerId,
+            paymentMethodId = paymentMethod.paymentMethodId,
+            qrId = qr.qrId
+        )
 
     private fun Payment.save() =
         paymentRepository.save(this)

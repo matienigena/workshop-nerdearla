@@ -11,5 +11,5 @@ data class PaymentRequest(
     val amount: Double,
     val installments: Int = 1,
     val terminalData: TerminalData,
-    val paymentMethod: PaymentMethod
+    val paymentMethodData: PaymentMethodData
 )
