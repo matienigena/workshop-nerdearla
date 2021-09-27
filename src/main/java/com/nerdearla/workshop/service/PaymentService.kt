@@ -15,7 +15,7 @@ class PaymentService(
 ) {
     //quitamos el nulo de la respuesta
 
-    fun processPayment(initialOperation: InitialOperation): Payment =
+    fun processPayment(initialOperation: InitialOperation) =
     // copy vs construccion con todos los datos
         // extensions vs let / also, pros y contras
         initialOperation
@@ -44,7 +44,7 @@ class PaymentService(
             traceNumber = authorization.traceNumber,
             buyerId = buyer.id,
             sellerId = seller.id,
-            paymentMethodId = paymentMethod.id,
+            paymentMethodId = buyerPaymentMethod.id,
             qrId = qr.id
         )
 

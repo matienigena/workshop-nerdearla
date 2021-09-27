@@ -1,11 +1,11 @@
 package com.nerdearla.workshop.validator
 
 import com.nerdearla.workshop.dto.payment.PaymentMethodData
-import com.nerdearla.workshop.model.PaymentMethod
+import com.nerdearla.workshop.model.BuyerPaymentMethod
 import org.springframework.stereotype.Component
 
 @Component
-class PaymentMethodValidator {
+interface PaymentMethodValidator {
 
-    fun validate(paymentMethod: PaymentMethod, paymentMethodData: PaymentMethodData) {}
+    fun validate(buyerPaymentMethod: BuyerPaymentMethod, paymentMethodData: PaymentMethodData) {}
 }

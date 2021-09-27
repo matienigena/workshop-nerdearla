@@ -20,7 +20,7 @@ class FullOperationProvider(
             FullOperation(
                 paymentId = paymentIdProvider.next,
                 qr = provideQrBy(qrId),
-                paymentMethod = providePaymentMethodBy(paymentMethodData),
+                buyerPaymentMethod = providePaymentMethodBy(paymentMethodData),
                 seller = provideSellerBy(sellerId),
                 buyer = provideBuyerBy(buyerId),
                 terminalData = terminalData,

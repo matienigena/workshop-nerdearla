@@ -1,6 +1,5 @@
 package com.nerdearla.workshop.service.provider
 
-import com.nerdearla.workshop.dto.payment.TerminalData
 import com.nerdearla.workshop.model.*
 import com.nerdearla.workshop.service.GatewayService
 import org.springframework.stereotype.Component
@@ -16,7 +15,7 @@ class AuthorizedOperationProvider(
                 authorization = gatewayService.authorize(fullOperation),
                 paymentId = paymentId,
                 qr = qr,
-                paymentMethod = paymentMethod,
+                buyerPaymentMethod = buyerPaymentMethod,
                 amount = amount,
                 installments = installments,
                 seller = seller,

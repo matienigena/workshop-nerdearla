@@ -4,7 +4,7 @@ import com.nerdearla.workshop.model.Seller
 import org.springframework.stereotype.Component
 
 @Component
-class SellerValidator {
+interface SellerValidator {
 
     fun validate(seller: Seller) {}
 }

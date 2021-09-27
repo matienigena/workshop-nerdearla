@@ -10,7 +10,7 @@ data class PaymentOperation(
     val qr: QR? = null,
     val buyer: Buyer? = null,
     val seller: Seller? = null,
-    val paymentMethod: PaymentMethod? = null,
+    val buyerPaymentMethod: BuyerPaymentMethod? = null,
 )
 
 data class InitialOperation(
@@ -26,7 +26,7 @@ data class InitialOperation(
 data class FullOperation(
     val paymentId: String,
     val qr: QR,
-    val paymentMethod: PaymentMethod,
+    val buyerPaymentMethod: BuyerPaymentMethod,
     val amount: Double,
     val installments: Int = 1,
     val seller: Seller,
@@ -37,7 +37,7 @@ data class FullOperation(
 data class AuthorizedOperation(
     val paymentId: String,
     val qr: QR,
-    val paymentMethod: PaymentMethod,
+    val buyerPaymentMethod: BuyerPaymentMethod,
     val amount: Double,
     val installments: Int = 1,
     val seller: Seller,
