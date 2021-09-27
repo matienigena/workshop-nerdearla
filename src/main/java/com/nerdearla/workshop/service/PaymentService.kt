@@ -32,15 +32,15 @@ class PaymentService(
     private fun FullOperation.validateFraud() =
         fraudService.authorize(this)
 
-    private fun FullOperation.authorize(): FullOperation =
+    private fun FullOperation.authorize(): AuthorizedOperation =
         authorizedOperationProvider.provide(this)
 
 
-    private fun FullOperation.toPayment() =
+    private fun AuthorizedOperation.toPayment() =
         Payment(
             id = paymentId,
             amount = amount,
-            authorizationId = authorization!!.id,
+            authorizationId = authorization.id,
             traceNumber = authorization.traceNumber,
             buyerId = buyer.id,
             sellerId = seller.id,

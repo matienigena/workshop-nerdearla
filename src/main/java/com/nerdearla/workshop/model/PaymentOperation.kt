@@ -31,6 +31,17 @@ data class FullOperation(
     val installments: Int = 1,
     val seller: Seller,
     val buyer: Buyer,
+    val terminalData: TerminalData
+)
+
+data class AuthorizedOperation(
+    val paymentId: String,
+    val qr: QR,
+    val paymentMethod: PaymentMethod,
+    val amount: Double,
+    val installments: Int = 1,
+    val seller: Seller,
+    val buyer: Buyer,
     val terminalData: TerminalData,
-    val authorization: PaymentAuthorization? = null
+    val authorization: PaymentAuthorization
 )
