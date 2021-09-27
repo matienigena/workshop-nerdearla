@@ -1,7 +1,7 @@
 package com.nerdearla.workshop.model
 
 data class Payment(
-    val paymentId: String,
+    val id: String,
     val authorizationId: String,
     val traceNumber: String,
     val qrId: String,

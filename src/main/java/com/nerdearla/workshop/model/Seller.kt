@@ -1,6 +1,7 @@
 package com.nerdearla.workshop.model
 
 data class Seller(
-    val sellerId: String
+    val id: String,
+    val enabled: Boolean
 )
 

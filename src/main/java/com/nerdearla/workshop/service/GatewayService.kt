@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class GatewayService {
     // Ver de meter alguna estrategia o factory dependiendo del tipo de pago?
     // De eso se encargaría el gateway real pero bueno
-    fun authorize(operation: FullOperation): PaymentAuthorization {
-        return PaymentAuthorization(id = "1", traceNumber = "123")
-    }
+    // TODO: Llamada a service externo
+    fun authorize(operation: FullOperation): PaymentAuthorization =
+        PaymentAuthorization(id = "1", traceNumber = "123")
 }

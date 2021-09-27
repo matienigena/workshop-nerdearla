@@ -6,5 +6,6 @@ import org.springframework.stereotype.Service
 
 @Service
 class FraudService {
+    // TODO: Implementar
     fun authorize(fullOperation: FullOperation) {}
 }

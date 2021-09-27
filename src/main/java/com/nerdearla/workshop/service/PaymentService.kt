@@ -38,14 +38,14 @@ class PaymentService(
 
     private fun FullOperation.toPayment() =
         Payment(
-            paymentId = paymentId,
+            id = paymentId,
             amount = amount,
             authorizationId = authorization!!.id,
             traceNumber = authorization.traceNumber,
-            buyerId = buyer.buyerId,
-            sellerId = seller.sellerId,
-            paymentMethodId = paymentMethod.paymentMethodId,
-            qrId = qr.qrId
+            buyerId = buyer.id,
+            sellerId = seller.id,
+            paymentMethodId = paymentMethod.id,
+            qrId = qr.id
         )
 
     private fun Payment.save() =
