@@ -22,7 +22,7 @@ class FullOperationProvider(
                 qr = provideQrBy(qrId),
                 buyerPaymentMethod = providePaymentMethodBy(paymentMethodData),
                 seller = provideSellerBy(sellerId),
-                buyer = provideBuyerBy(buyerId),
+                buyer = provideBuyerBy(buyerId, identification),
                 terminalData = terminalData,
                 amount = amount,
                 installments = installments
@@ -34,8 +34,8 @@ class FullOperationProvider(
     private fun provideQrBy(qrId: String) =
         qrService.findValidQR(qrId)
 
-    private fun provideBuyerBy(buyerId: String) =
-        buyerService.findBuyer(buyerId)
+    private fun provideBuyerBy(buyerId: String, identification: String) =
+        buyerService.findBuyer(buyerId, identification)
 
     private fun provideSellerBy(sellerId: String) =
         sellerService.findSeller(sellerId)

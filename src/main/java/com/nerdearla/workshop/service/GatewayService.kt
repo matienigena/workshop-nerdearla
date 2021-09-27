@@ -4,7 +4,6 @@ import com.nerdearla.workshop.dto.authorization.PaymentAuthorizationRequest
 import com.nerdearla.workshop.dto.authorization.PaymentAuthorizationResponse
 import com.nerdearla.workshop.model.FullOperation
 import com.nerdearla.workshop.model.PaymentAuthorization
-import com.nerdearla.workshop.model.PaymentOperation
 import com.nerdearla.workshop.validator.GatewayResponseValidator
 import org.springframework.stereotype.Service
 
@@ -24,7 +23,12 @@ class GatewayService(
         PaymentAuthorizationRequest(
             paymentMethodToken = buyerPaymentMethod.token,
             paymentMethodSecurityCode = buyerPaymentMethod.securityCode,
-            holderIdentification = buyer.identification
+            holderIdentification = buyer.identification,
+            establishmentId = terminalData.establishmentId,
+            terminalNumber = terminalData.terminalNumber,
+            ticketNumber = terminalData.ticketNumber,
+            traceNumber = terminalData.traceNumber,
+            transactionDatetime = terminalData.transactionDatetime
         )
 
     // Ver de meter alguna estrategia o factory dependiendo del tipo de pago?

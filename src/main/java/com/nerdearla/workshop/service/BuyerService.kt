@@ -10,7 +10,7 @@ class BuyerService(
     private val validator: BuyerValidator
 ) {
     // TODO: Llamada a service externo
-    fun findBuyer(buyerId: String?) = Buyer(
+    fun findBuyer(buyerId: String?, identification: String) = Buyer(
         id = "1",
         enabled = true,
         identification = "123",
@@ -28,6 +28,6 @@ class BuyerService(
             state = "ASD"
         )
     ).also {
-        validator.validate(it)
+        validator.validate(it, identification)
     }
 }

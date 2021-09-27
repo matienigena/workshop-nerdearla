@@ -1,5 +1,5 @@
 package com.nerdearla.workshop.dto.payment
 
-class PaymentResponse {
-    var paymentId: String? = null
-}
+data class PaymentResponse(
+    val paymentId: String
+)

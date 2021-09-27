@@ -6,7 +6,11 @@ import org.springframework.stereotype.Component
 
 @Component
 class PaymentResponseMapper {
-    fun map(processPayment: Payment?): PaymentResponse {
-        return PaymentResponse()
+
+    fun map(payment: Payment): PaymentResponse {
+        return PaymentResponse(
+            paymentId = payment.id
+        )
     }
+
 }

@@ -6,5 +6,17 @@ import org.springframework.stereotype.Component
 @Component
 interface SellerValidator {
 
-    fun validate(seller: Seller) {}
+    fun validate(seller: Seller) {
+        when {
+            !seller.enabled -> throwDisabledSeller()
+        }
+    }
+
+    private fun throwDisabledSeller() {
+        throw RuntimeException("Buyer is not enabled").also {
+            // TODO: logging
+        }
+    }
+
+
 }

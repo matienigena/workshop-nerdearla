@@ -6,5 +6,15 @@ import org.springframework.stereotype.Component
 @Component
 interface GatewayResponseValidator {
 
-    fun validate(response: PaymentAuthorizationResponse) {}
+    fun validate(response: PaymentAuthorizationResponse) {
+        when {
+            response.status != "OK" -> throwFailedPayment()
+        }
+    }
+
+    private fun throwFailedPayment() {
+        throw RuntimeException("Payment failed").also {
+            // TODO: log error
+        }
+    }
 }

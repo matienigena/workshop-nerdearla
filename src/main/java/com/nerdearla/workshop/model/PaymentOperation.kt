@@ -20,7 +20,8 @@ data class InitialOperation(
     val amount: Double,
     val installments: Int = 1,
     val terminalData: TerminalData,
-    val paymentMethodData: PaymentMethodData
+    val paymentMethodData: PaymentMethodData,
+    val identification: String
 )
 
 data class FullOperation(

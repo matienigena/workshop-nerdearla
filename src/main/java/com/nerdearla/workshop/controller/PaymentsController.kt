@@ -22,7 +22,7 @@ class PaymentsController(
     //Hacer incapie en que no estamos rompiendo el encapsulamiento y el objetivo que tenemos con estas extensiones.
     //Distinguir este tipo de extension de las publicas.
     @PostMapping
-    fun processPayment(@RequestBody paymentRequest: @Valid PaymentRequest): PaymentResponse =
+    fun processPayment(@RequestBody @Valid paymentRequest: PaymentRequest): PaymentResponse =
         paymentRequest
             .buildOperation()
             .process()
@@ -35,7 +35,8 @@ class PaymentsController(
             paymentMethodData = paymentMethodData,
             qrId = qrId,
             sellerId = sellerId,
-            terminalData = terminalData
+            terminalData = terminalData,
+            identification = identification
         )
 
     private fun InitialOperation.process() =
