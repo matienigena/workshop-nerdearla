@@ -20,7 +20,7 @@ class FullOperationProvider(
             FullOperation(
                 paymentId = paymentIdProvider.next,
                 qr = provideQrBy(qrId),
-                buyerPaymentMethod = providePaymentMethodBy(paymentMethodData),
+                buyerPaymentMethod = providePaymentMethodBy(buyerId, paymentMethodData),
                 seller = provideSellerBy(sellerId),
                 buyer = provideBuyerBy(buyerId, identification),
                 terminalData = terminalData,
@@ -40,6 +40,6 @@ class FullOperationProvider(
     private fun provideSellerBy(sellerId: String) =
         sellerService.findSeller(sellerId)
 
-    private fun providePaymentMethodBy(paymentMethodData: PaymentMethodData) =
-        paymentMethodService.authorize(paymentMethodData)
+    private fun providePaymentMethodBy(buyerId: String, paymentMethodData: PaymentMethodData) =
+        paymentMethodService.findByBuyerIdAndPaymentMethodToken(buyerId, paymentMethodData)
 }

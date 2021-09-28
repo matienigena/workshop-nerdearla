@@ -4,7 +4,7 @@ import com.nerdearla.workshop.dto.authorization.PaymentAuthorizationResponse
 import org.springframework.stereotype.Component
 
 @Component
-interface GatewayResponseValidator {
+class GatewayResponseValidator {
 
     fun validate(response: PaymentAuthorizationResponse) {
         when {

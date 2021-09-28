@@ -1,33 +1,28 @@
 package com.nerdearla.workshop.service
 
-import com.nerdearla.workshop.model.Address
 import com.nerdearla.workshop.dto.buyer.Buyer
 import com.nerdearla.workshop.validator.BuyerValidator
 import org.springframework.stereotype.Service
+import org.springframework.web.reactive.function.client.WebClient
 
 @Service
 class BuyerService(
-    private val validator: BuyerValidator
+    private val validator: BuyerValidator,
+    private val webClient: WebClient
 ) {
-    // TODO: Llamada a service externo
-    fun findBuyer(buyerId: String?, identification: String) = Buyer(
-        id = "1",
-        enabled = true,
-        identification = "123",
-        name = "a",
-        lastName = "buyer",
-        email = "an@email.com",
-        dateOfBirth = "01/01/2020",
-        address = Address(
-            id = "1",
-            city = "a",
-            country = "b",
-            line1 = "fake street 123",
-            line2 = "A",
-            postalCode = "AAA123456C",
-            state = "ASD"
-        )
-    ).also {
-        validator.validate(it, identification)
-    }
+    fun findBuyer(buyerId: String, identification: String): Buyer =
+        webClient
+            .getBuyerById(buyerId)
+            .also {
+                validator.validate(it, identification)
+            }
+
+    private fun WebClient.getBuyerById(buyerId: String) =
+        get()
+            .uri { uriBuilder ->
+                uriBuilder
+                    .path("/buyers/{buyerId}")
+                    .build(buyerId)
+            }
+            .retrieve().bodyToMono(Buyer::class.java).block()!!
 }

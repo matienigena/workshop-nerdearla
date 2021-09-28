@@ -5,7 +5,7 @@ import com.nerdearla.workshop.dto.buyer.paymentMethod.BuyerPaymentMethod
 import org.springframework.stereotype.Component
 
 @Component
-interface PaymentMethodValidator {
+class PaymentMethodValidator {
 
     fun validate(buyerPaymentMethod: BuyerPaymentMethod, paymentMethodData: PaymentMethodData) {
         when {

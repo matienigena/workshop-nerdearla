@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 import kotlin.RuntimeException
 
 @Component
-interface BuyerValidator {
+class BuyerValidator {
 
     fun validate(buyer: Buyer, identification: String) {
         when {
