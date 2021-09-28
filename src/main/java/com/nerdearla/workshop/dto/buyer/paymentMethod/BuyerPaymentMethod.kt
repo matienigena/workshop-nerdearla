@@ -1,4 +1,4 @@
-package com.nerdearla.workshop.model
+package com.nerdearla.workshop.dto.buyer.paymentMethod
 
 data class BuyerPaymentMethod(
     val id: String,

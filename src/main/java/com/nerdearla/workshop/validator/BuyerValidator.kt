@@ -1,6 +1,6 @@
 package com.nerdearla.workshop.validator
 
-import com.nerdearla.workshop.model.Buyer
+import com.nerdearla.workshop.dto.buyer.Buyer
 import org.springframework.stereotype.Component
 import kotlin.RuntimeException
 

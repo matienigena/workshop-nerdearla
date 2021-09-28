@@ -1,7 +1,7 @@
 package com.nerdearla.workshop.service
 
 import com.nerdearla.workshop.model.Address
-import com.nerdearla.workshop.model.Seller
+import com.nerdearla.workshop.dto.seller.Seller
 import com.nerdearla.workshop.validator.SellerValidator
 import org.springframework.stereotype.Service
 

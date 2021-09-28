@@ -4,12 +4,13 @@ import com.nerdearla.workshop.model.*
 import com.nerdearla.workshop.repository.PaymentRepository
 import com.nerdearla.workshop.service.provider.AuthorizedOperationProvider
 import com.nerdearla.workshop.service.provider.FullOperationProvider
+import com.nerdearla.workshop.service.provider.NotFraudulentOperationProvider
 import org.springframework.stereotype.Service
 
 @Service
 class PaymentService(
     private val fullOperationProvider: FullOperationProvider,
-    private val fraudService: FraudService,
+    private val notFraudulentOperationProvider: NotFraudulentOperationProvider,
     private val paymentRepository: PaymentRepository,
     private val authorizedOperationProvider: AuthorizedOperationProvider
 ) {
@@ -20,7 +21,7 @@ class PaymentService(
         // extensions vs let / also, pros y contras
         initialOperation
             .toFullOperation()
-            .also { it.validateFraud() }
+            .toNotFraudulentOperation()
             .authorize()
             .toPayment()
             .also { it.save() }
@@ -29,10 +30,11 @@ class PaymentService(
     private fun InitialOperation.toFullOperation() =
         fullOperationProvider.provide(this)
 
-    private fun FullOperation.validateFraud() =
-        fraudService.authorize(this)
+    private fun FullOperation.toNotFraudulentOperation(): NotFraudulentOperation =
+        notFraudulentOperationProvider.provide(this)
 
-    private fun FullOperation.authorize(): AuthorizedOperation =
+
+    private fun NotFraudulentOperation.authorize(): AuthorizedOperation =
         authorizedOperationProvider.provide(this)
 
 
@@ -45,7 +47,8 @@ class PaymentService(
             buyerId = buyer.id,
             sellerId = seller.id,
             paymentMethodId = buyerPaymentMethod.id,
-            qrId = qr.id
+            qrId = qr.id,
+            fraudValidationId = fraudResponse.fraudValidationId
         )
 
     private fun Payment.save() =

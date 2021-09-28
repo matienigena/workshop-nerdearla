@@ -3,6 +3,7 @@ package com.nerdearla.workshop.service
 import com.nerdearla.workshop.dto.authorization.PaymentAuthorizationRequest
 import com.nerdearla.workshop.dto.authorization.PaymentAuthorizationResponse
 import com.nerdearla.workshop.model.FullOperation
+import com.nerdearla.workshop.model.NotFraudulentOperation
 import com.nerdearla.workshop.model.PaymentAuthorization
 import com.nerdearla.workshop.validator.GatewayResponseValidator
 import org.springframework.stereotype.Service
@@ -12,14 +13,14 @@ class GatewayService(
     private val validator: GatewayResponseValidator
 ) {
 
-    fun authorize(operation: FullOperation) =
+    fun authorize(operation: NotFraudulentOperation) =
         operation
             .toPaymentAuthorizationRequest()
             .callGateway()
             .also { validator.validate(it) }
             .toPaymentAuthorization()
 
-    private fun FullOperation.toPaymentAuthorizationRequest() =
+    private fun NotFraudulentOperation.toPaymentAuthorizationRequest() =
         PaymentAuthorizationRequest(
             paymentMethodToken = buyerPaymentMethod.token,
             paymentMethodSecurityCode = buyerPaymentMethod.securityCode,

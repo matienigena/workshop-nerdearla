@@ -1,6 +1,6 @@
 package com.nerdearla.workshop.service
 
-import com.nerdearla.workshop.model.QR
+import com.nerdearla.workshop.dto.qr.QR
 import org.springframework.stereotype.Service
 
 @Service

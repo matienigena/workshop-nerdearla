@@ -1,7 +1,7 @@
 package com.nerdearla.workshop.service
 
 import com.nerdearla.workshop.dto.payment.PaymentMethodData
-import com.nerdearla.workshop.model.BuyerPaymentMethod
+import com.nerdearla.workshop.dto.buyer.paymentMethod.BuyerPaymentMethod
 import com.nerdearla.workshop.validator.PaymentMethodValidator
 import org.springframework.stereotype.Service
 

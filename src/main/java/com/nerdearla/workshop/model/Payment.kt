@@ -8,5 +8,6 @@ data class Payment(
     val paymentMethodId: String,
     val amount: Double,
     val buyerId: String,
-    val sellerId: String
+    val sellerId: String,
+    val fraudValidationId: String
 )

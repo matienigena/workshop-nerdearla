@@ -9,10 +9,10 @@ class AuthorizedOperationProvider(
     private val gatewayService: GatewayService
 ) {
 
-    fun provide(fullOperation: FullOperation): AuthorizedOperation =
-        with(fullOperation) {
+    fun provide(notFraudulentOperation: NotFraudulentOperation): AuthorizedOperation =
+        with(notFraudulentOperation) {
             AuthorizedOperation(
-                authorization = gatewayService.authorize(fullOperation),
+                authorization = gatewayService.authorize(notFraudulentOperation),
                 paymentId = paymentId,
                 qr = qr,
                 buyerPaymentMethod = buyerPaymentMethod,
@@ -20,6 +20,7 @@ class AuthorizedOperationProvider(
                 installments = installments,
                 seller = seller,
                 buyer = buyer,
+                fraudResponse = fraudResponse,
                 terminalData = terminalData
             )
         }

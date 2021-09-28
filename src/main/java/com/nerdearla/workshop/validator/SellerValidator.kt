@@ -1,6 +1,6 @@
 package com.nerdearla.workshop.validator
 
-import com.nerdearla.workshop.model.Seller
+import com.nerdearla.workshop.dto.seller.Seller
 import org.springframework.stereotype.Component
 
 @Component

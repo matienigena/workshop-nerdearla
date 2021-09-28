@@ -1,4 +1,4 @@
-package com.nerdearla.workshop.model
+package com.nerdearla.workshop.dto.qr
 
 data class QR(
     val id: String,

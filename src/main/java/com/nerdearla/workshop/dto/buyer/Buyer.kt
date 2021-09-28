@@ -1,4 +1,6 @@
-package com.nerdearla.workshop.model
+package com.nerdearla.workshop.dto.buyer
+
+import com.nerdearla.workshop.model.Address
 
 data class Buyer(
     val id: String,
