@@ -1,6 +1,7 @@
 # Workshop
 
 `POST` /v1/payments
+
 ```json
 {
   "qr_id": "1123",

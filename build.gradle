@@ -1,11 +1,15 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.4'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.5.31'
+    // Hay que agregar este plugin para que no haya errores porque las clases de kotlin son final
+    // y para spring no tienen que ser final "Configuration problem: @Configuration class 'WorkshopApplication' may not be final"
+    id "org.jetbrains.kotlin.plugin.spring" version '1.5.31'
 }
 
 apply plugin: "kotlin"
+apply plugin: "kotlin-spring"
 
 
 group = 'com.nerdearla'
@@ -13,18 +17,21 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation("org.springframework.boot:spring-boot-starter-validation")
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin"
+
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 compileKotlin {
     kotlinOptions {
