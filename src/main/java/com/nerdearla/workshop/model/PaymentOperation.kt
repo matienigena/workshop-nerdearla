@@ -9,15 +9,6 @@ import com.nerdearla.workshop.dto.payment.TerminalData
 import com.nerdearla.workshop.dto.qr.QR
 import com.nerdearla.workshop.dto.seller.Seller
 
-data class PaymentOperation(
-    val paymentRequest: PaymentRequest,
-    val paymentId: String? = null,
-    val qr: QR? = null,
-    val buyer: Buyer? = null,
-    val seller: Seller? = null,
-    val buyerPaymentMethod: BuyerPaymentMethod? = null,
-)
-
 data class InitialOperation(
     val qrId: String,
     val buyerId: String,
