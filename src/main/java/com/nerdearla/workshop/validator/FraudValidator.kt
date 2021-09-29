@@ -19,5 +19,5 @@ class FraudValidator {
     }
 
     private fun operationIsNotAllowed(fraudValidationResponse: FraudValidationResponse) =
-        fraudValidationResponse.result != "ACCEPTED"
+        fraudValidationResponse.result != "ALLOWED"
 }

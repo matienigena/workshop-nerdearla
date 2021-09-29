@@ -13,7 +13,7 @@ class SellerValidator {
     }
 
     private fun throwDisabledSeller() {
-        throw RuntimeException("Buyer is not enabled").also {
+        throw RuntimeException("Seller is not enabled").also {
             // TODO: logging
         }
     }

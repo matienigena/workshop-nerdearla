@@ -8,7 +8,7 @@ class GatewayResponseValidator {
 
     fun validate(response: PaymentAuthorizationResponse) {
         when {
-            response.status != "OK" -> throwFailedPayment()
+            response.status != "ACCEPTED" -> throwFailedPayment()
         }
     }
 
