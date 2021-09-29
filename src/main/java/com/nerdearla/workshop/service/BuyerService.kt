@@ -13,9 +13,10 @@ class BuyerService(
     fun findBuyer(buyerId: String, identification: String, gender: String): Buyer =
         webClient
             .getBuyerById(buyerId)
-            .also {
-                validator.validate(it, identification, gender)
-            }
+            .validate(identification, gender)
+
+    private fun Buyer.validate(identification: String, gender: String) =
+        also { validator.validate(this, identification, gender) }
 
     // TODO: Ver si vale la pena armar una capita generica que abstraiga el webclient de los services
     private fun WebClient.getBuyerById(buyerId: String) =

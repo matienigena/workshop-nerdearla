@@ -41,6 +41,7 @@ data class NotFraudulentOperation(
     val seller: Seller,
     val buyer: Buyer,
     val terminalData: TerminalData,
+    // TODO: Armar una representacion de FraudValidationResponse
     val fraudResponse: FraudValidationResponse
 )
 
