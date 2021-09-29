@@ -17,6 +17,7 @@ class BuyerService(
                 validator.validate(it, identification, gender)
             }
 
+    // TODO: Ver si vale la pena armar una capita generica que abstraiga el webclient de los services
     private fun WebClient.getBuyerById(buyerId: String) =
         get()
             .uri { uriBuilder ->

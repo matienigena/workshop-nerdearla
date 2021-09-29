@@ -4,11 +4,11 @@ import com.nerdearla.workshop.dto.buyer.Buyer
 import com.nerdearla.workshop.dto.buyer.paymentMethod.BuyerPaymentMethod
 import com.nerdearla.workshop.dto.fraud.FraudValidationResponse
 import com.nerdearla.workshop.dto.payment.PaymentMethodData
-import com.nerdearla.workshop.dto.payment.PaymentRequest
 import com.nerdearla.workshop.dto.payment.TerminalData
 import com.nerdearla.workshop.dto.qr.QR
 import com.nerdearla.workshop.dto.seller.Seller
 
+// TODO: Evaluar estrategia para que no se repitan los campos en cada estado de la operación?
 data class InitialOperation(
     val qrId: String,
     val buyerId: String,
