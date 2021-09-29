@@ -12,12 +12,13 @@ import com.nerdearla.workshop.dto.seller.Seller
 data class InitialOperation(
     val qrId: String,
     val buyerId: String,
+    val identification: String,
+    val gender: String,
     val sellerId: String,
     val amount: Double,
     val installments: Int = 1,
     val terminalData: TerminalData,
-    val paymentMethodData: PaymentMethodData,
-    val identification: String
+    val paymentMethodData: PaymentMethodData
 )
 
 data class FullOperation(

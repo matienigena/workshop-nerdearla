@@ -10,11 +10,11 @@ class BuyerService(
     private val validator: BuyerValidator,
     private val webClient: WebClient
 ) {
-    fun findBuyer(buyerId: String, identification: String): Buyer =
+    fun findBuyer(buyerId: String, identification: String, gender: String): Buyer =
         webClient
             .getBuyerById(buyerId)
             .also {
-                validator.validate(it, identification)
+                validator.validate(it, identification, gender)
             }
 
     private fun WebClient.getBuyerById(buyerId: String) =

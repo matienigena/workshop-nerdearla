@@ -7,10 +7,10 @@ import kotlin.RuntimeException
 @Component
 class BuyerValidator {
 
-    fun validate(buyer: Buyer, identification: String) {
+    fun validate(buyer: Buyer, identification: String, gender: String) {
         when {
             !buyer.enabled -> throwBuyerNotEnabled()
-            buyer.identification != identification -> throwInvalidBuyer()
+            (buyer.identification != identification || buyer.gender != gender) -> throwInvalidBuyer()
         }
     }
 

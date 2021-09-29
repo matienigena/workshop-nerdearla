@@ -36,7 +36,8 @@ class PaymentsController(
             qrId = qrId,
             sellerId = sellerId,
             terminalData = terminalData,
-            identification = identification
+            identification = buyerIdentification,
+            gender = buyerGender
         )
 
     private fun InitialOperation.process() =

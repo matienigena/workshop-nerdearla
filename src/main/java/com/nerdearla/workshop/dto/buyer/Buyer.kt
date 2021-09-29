@@ -5,6 +5,7 @@ import com.nerdearla.workshop.model.Address
 data class Buyer(
     val id: String,
     val identification: String,
+    val gender: String,
     val enabled: Boolean,
     val name: String,
     val lastName: String,
