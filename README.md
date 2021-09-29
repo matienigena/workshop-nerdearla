@@ -4,21 +4,23 @@
 
 ```json
 {
-  "qr_id": "1123",
-  "buyer_id": 1,
-  "seller_id": 2,
-  "amount": 100.00,
-  "installments": 1,
-  "payment_method": {
-    "token": "2342349085324239",
-    "security_code": "103"
+  "qrId": "1312312314klsdfs1",
+  "buyerIdentification": "12345678",
+  "buyerGender": "M",
+  "buyerId": "1",
+  "sellerId": "2",
+  "amount": 1000.00,
+  "installments": 3,
+  "terminalData": {
+    "establishmentId": "010",
+    "terminalNumber": "03305",
+    "traceNumber": "666186ff-39bb-4e30-8574-d11f27bb7b69",
+    "ticketNumber": "11340566",
+    "transactionDatetime": "2021-09-29T07:36:09+0000"
   },
-  "terminal_data": {
-    "establishment_id": "10",
-    "terminal_number": "123",
-    "trace_number": "123",
-    "ticket_number": "1412",
-    "transaction_datetime": "2019-01-02T17:00:00"
+  "paymentMethodData": {
+    "token": "dGVzdDEyM2tna2ZrMzExMzQ",
+    "securityCode": "123"
   }
 }
 ```
