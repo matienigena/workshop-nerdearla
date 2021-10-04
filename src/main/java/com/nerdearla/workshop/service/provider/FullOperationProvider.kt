@@ -1,6 +1,6 @@
 package com.nerdearla.workshop.service.provider
 
-import com.nerdearla.workshop.dto.payment.PaymentMethod
+import com.nerdearla.workshop.dto.payment.PaymentMethodData
 import com.nerdearla.workshop.model.FullOperation
 import com.nerdearla.workshop.model.InitialOperation
 import com.nerdearla.workshop.service.*
@@ -20,10 +20,12 @@ class FullOperationProvider(
             FullOperation(
                 paymentId = paymentIdProvider.next,
                 qr = provideQrBy(qrId),
-                paymentMethod = providePaymentMethodBy(paymentMethod),
+                buyerPaymentMethod = providePaymentMethodBy(buyerId, paymentMethodData),
                 seller = provideSellerBy(sellerId),
-                buyer = provideBuyerBy(buyerId),
-                terminalData = terminalData
+                buyer = provideBuyerBy(buyerId, identification, gender),
+                terminalData = terminalData,
+                amount = amount,
+                installments = installments
             )
         }
 
@@ -32,12 +34,12 @@ class FullOperationProvider(
     private fun provideQrBy(qrId: String) =
         qrService.findValidQR(qrId)
 
-    private fun provideBuyerBy(buyerId: String) =
-        buyerService.findBuyer(buyerId)
+    private fun provideBuyerBy(buyerId: String, identification: String, gender: String) =
+        buyerService.findBuyer(buyerId, identification, gender)
 
     private fun provideSellerBy(sellerId: String) =
         sellerService.findSeller(sellerId)
 
-    private fun providePaymentMethodBy(paymentMethod: PaymentMethod) =
-        paymentMethodService.authorize(paymentMethod)
+    private fun providePaymentMethodBy(buyerId: String, paymentMethodData: PaymentMethodData) =
+        paymentMethodService.findByBuyerIdAndPaymentMethodToken(buyerId, paymentMethodData)
 }

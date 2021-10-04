@@ -6,3 +6,8 @@ server:
   servlet:
     context-path: /api
   port: 8080
+
+api:
+  baseUrl: ${API_BASE_URL}
+  headers:
+    x-api-key: ${API_HEADERS_X-API-KEY}
