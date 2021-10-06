@@ -1,9 +1,9 @@
 package com.nerdearla.workshop.authorization.client
 
-import com.nerdearla.workshop.authorization.error.AuthorizationError
-import com.nerdearla.workshop.shared.client.Client
 import com.nerdearla.workshop.authorization.PaymentAuthorizationRequest
 import com.nerdearla.workshop.authorization.PaymentAuthorizationResponse
+import com.nerdearla.workshop.authorization.error.AuthorizationError
+import com.nerdearla.workshop.shared.client.Client
 import com.nerdearla.workshop.shared.utils.CompanionLogger
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.ClientResponse
@@ -18,7 +18,11 @@ class GatewayClient(
     override val path: String = "/authorizations"
 
     fun authorize(request: PaymentAuthorizationRequest) =
-        post<PaymentAuthorizationResponse, PaymentAuthorizationRequest>(request)
+        post(
+            PaymentAuthorizationResponse::class.java,
+            PaymentAuthorizationRequest::class.java,
+            request
+        )
             .log { info("authorization done: {}", it) }
 
     override fun handleError(response: ClientResponse): Mono<Throwable> =

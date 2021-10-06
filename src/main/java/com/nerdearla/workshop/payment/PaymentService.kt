@@ -1,9 +1,9 @@
 package com.nerdearla.workshop.payment
 
 import com.nerdearla.workshop.authorization.GatewayService
+import com.nerdearla.workshop.authorization.PaymentAuthorization
 import com.nerdearla.workshop.fraud.FraudService
 import com.nerdearla.workshop.fraud.FraudValidationResponse
-import com.nerdearla.workshop.authorization.PaymentAuthorization
 import com.nerdearla.workshop.operation.ExpandedOperation
 import com.nerdearla.workshop.operation.ExpandedOperationProvider
 import com.nerdearla.workshop.operation.InitialOperation
