@@ -23,7 +23,6 @@ class PaymentService(
     fun processPayment(initialOperation: InitialOperation) =
         initialOperation
             .expandEntities()
-            //.validateFraud()
             .authorize()
             .toPayment()
             .also { save(it) }

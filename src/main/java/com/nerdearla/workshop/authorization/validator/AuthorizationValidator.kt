@@ -1,7 +1,7 @@
 package com.nerdearla.workshop.authorization.validator
 
-import com.nerdearla.workshop.authorization.error.PaymentNotAuthorizedError
 import com.nerdearla.workshop.authorization.PaymentAuthorization
+import com.nerdearla.workshop.authorization.error.PaymentNotAuthorizedError
 import com.nerdearla.workshop.shared.utils.CompanionLogger
 import org.springframework.stereotype.Component
 

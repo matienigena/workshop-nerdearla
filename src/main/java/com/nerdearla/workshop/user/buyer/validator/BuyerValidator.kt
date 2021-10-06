@@ -1,8 +1,8 @@
 package com.nerdearla.workshop.user.buyer.validator
 
+import com.nerdearla.workshop.shared.utils.CompanionLogger
 import com.nerdearla.workshop.user.buyer.Buyer
 import com.nerdearla.workshop.user.buyer.client.DisabledBuyerError
-import com.nerdearla.workshop.shared.utils.CompanionLogger
 import org.springframework.stereotype.Component
 
 @Component

@@ -1,13 +1,10 @@
 package com.nerdearla.workshop.operation
 
-import com.nerdearla.workshop.user.buyer.Buyer
-import com.nerdearla.workshop.paymentMethod.BuyerPaymentMethod
-import com.nerdearla.workshop.fraud.FraudValidationResponse
 import com.nerdearla.workshop.payment.model.PaymentMethodData
 import com.nerdearla.workshop.payment.model.TerminalData
-import com.nerdearla.workshop.authorization.PaymentAuthorization
-import com.nerdearla.workshop.authorization.PaymentAuthorizationResponse
+import com.nerdearla.workshop.paymentMethod.BuyerPaymentMethod
 import com.nerdearla.workshop.qr.QR
+import com.nerdearla.workshop.user.buyer.Buyer
 import com.nerdearla.workshop.user.seller.Seller
 
 data class InitialOperation(

@@ -1,8 +1,8 @@
 package com.nerdearla.workshop.user.seller
 
+import com.nerdearla.workshop.shared.utils.CompanionLogger
 import com.nerdearla.workshop.user.seller.client.SellerClient
 import com.nerdearla.workshop.user.seller.validator.SellerValidator
-import com.nerdearla.workshop.shared.utils.CompanionLogger
 import org.springframework.stereotype.Service
 
 @Service
