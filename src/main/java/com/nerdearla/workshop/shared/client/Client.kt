@@ -5,7 +5,6 @@ import org.springframework.web.reactive.function.client.ClientResponse
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.util.UriComponentsBuilder
 import reactor.core.publisher.Mono
-import java.net.URI
 
 abstract class Client(
     private val webClient: WebClient

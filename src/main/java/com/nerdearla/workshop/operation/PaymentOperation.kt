@@ -6,6 +6,7 @@ import com.nerdearla.workshop.fraud.FraudValidationResponse
 import com.nerdearla.workshop.payment.model.PaymentMethodData
 import com.nerdearla.workshop.payment.model.TerminalData
 import com.nerdearla.workshop.authorization.PaymentAuthorization
+import com.nerdearla.workshop.authorization.PaymentAuthorizationResponse
 import com.nerdearla.workshop.qr.QR
 import com.nerdearla.workshop.user.seller.Seller
 
@@ -29,4 +30,9 @@ data class ExpandedOperation(
     val seller: Seller,
     val buyer: Buyer,
     val terminalData: TerminalData
+)
+
+data class AuthorizedOperation(
+    val operation: ExpandedOperation,
+    val authorizationId: String
 )
