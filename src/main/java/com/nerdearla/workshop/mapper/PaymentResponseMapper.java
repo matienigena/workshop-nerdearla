@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PaymentResponseMapper {
 
-    public PaymentResponse map(Payment processPayment) {
-        return new PaymentResponse();
+    public PaymentResponse map(Payment payment) {
+        return new PaymentResponse(payment.getPaymentId());
     }
 }

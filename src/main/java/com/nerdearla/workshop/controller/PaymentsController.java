@@ -3,6 +3,7 @@ package com.nerdearla.workshop.controller;
 import com.nerdearla.workshop.dto.payment.PaymentRequest;
 import com.nerdearla.workshop.dto.payment.PaymentResponse;
 import com.nerdearla.workshop.mapper.PaymentResponseMapper;
+import com.nerdearla.workshop.model.Payment;
 import com.nerdearla.workshop.model.PaymentOperation;
 import com.nerdearla.workshop.service.PaymentService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,14 @@ public class PaymentsController {
     @PostMapping
     public PaymentResponse processPayment(@Valid @RequestBody PaymentRequest paymentRequest) {
         PaymentOperation operation = new PaymentOperation(paymentRequest);
-        return paymentResponseMapper.map(paymentsService.processPayment(operation));
+        return mapToResponse(process(operation));
+    }
+
+    private Payment process(PaymentOperation operation) {
+        return paymentsService.processPayment(operation);
+    }
+
+    private PaymentResponse mapToResponse(Payment payment) {
+        return paymentResponseMapper.map(payment);
     }
 }

@@ -1,6 +1,5 @@
 package com.nerdearla.workshop.service;
 
-import com.nerdearla.workshop.dto.payment.PaymentResponse;
 import com.nerdearla.workshop.model.*;
 import com.nerdearla.workshop.repository.PaymentRepository;
 import org.springframework.stereotype.Service;
@@ -54,7 +53,7 @@ public class PaymentService {
         operation.setBuyer(buyerService.findBuyer(buyer.getId()));
 
         // Obtener paymentMethod y agregarlo a operation?
-        PaymentMethod paymentMethod = paymentMethodService.authorize(operation.getPaymentRequest().getPaymentMethod());
+        PaymentMethod paymentMethod = paymentMethodService.authorize(operation.getPaymentRequest().getPaymentMethodData());
         operation.setPaymentMethod(paymentMethod);
 
         User seller = userService.findValidUser(operation.getPaymentRequest().getSellerId());
