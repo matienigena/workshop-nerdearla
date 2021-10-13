@@ -9,7 +9,6 @@ public class PaymentService {
 
     private final PaymentIdProvider paymentIdProvider;
     private final PaymentMethodService paymentMethodService;
-    private final FraudService fraudService;
     private final GatewayService gatewayService;
     private final BuyerService buyerService;
     private final SellerService sellerService;
@@ -19,7 +18,6 @@ public class PaymentService {
     public PaymentService(
             PaymentIdProvider paymentIdProvider,
             PaymentMethodService paymentMethodService,
-            FraudService fraudService,
             GatewayService gatewayService,
             BuyerService buyerService,
             SellerService sellerService,
@@ -28,7 +26,6 @@ public class PaymentService {
     ) {
         this.paymentIdProvider = paymentIdProvider;
         this.paymentMethodService = paymentMethodService;
-        this.fraudService = fraudService;
         this.gatewayService = gatewayService;
         this.buyerService = buyerService;
         this.sellerService = sellerService;
@@ -55,9 +52,6 @@ public class PaymentService {
 
         Seller seller = sellerService.findSeller(operation.getPaymentRequest().getSellerId());
         operation.setSeller(seller);
-
-        // FraudResult que se persista
-        fraudService.authorize(operation);
 
         PaymentAuthorization authorization = gatewayService.authorize(operation);
 

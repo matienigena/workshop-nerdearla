@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Component
-public class QRClient extends Client<QR> {
+public class QRClient extends GetClient<QR> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QRClient.class);
 

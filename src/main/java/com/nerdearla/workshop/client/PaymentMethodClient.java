@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Component
-public class PaymentMethodClient extends Client<BuyerPaymentMethod> {
+public class PaymentMethodClient extends GetClient<BuyerPaymentMethod> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PaymentMethodClient.class);
 

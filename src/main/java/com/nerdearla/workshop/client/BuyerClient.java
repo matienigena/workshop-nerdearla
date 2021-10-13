@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Component
-public class BuyerClient extends Client<Buyer> {
+public class BuyerClient extends GetClient<Buyer> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BuyerClient.class);
 
