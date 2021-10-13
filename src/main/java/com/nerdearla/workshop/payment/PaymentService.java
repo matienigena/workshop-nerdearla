@@ -49,14 +49,12 @@ public class PaymentService {
         String id = paymentIdProvider.getNext();
         operation.setPaymentId(id);
 
-        // validar qr_id?
         QR qr = qrService.findValidQR(operation.getPaymentRequest().getQrId());
         operation.setQr(qr);
 
         Buyer buyer = buyerService.findBuyer(operation.getPaymentRequest().getBuyerId());
         operation.setBuyer(buyer);
 
-        // Obtener paymentMethod y agregarlo a operation?
         BuyerPaymentMethod buyerPaymentMethod = paymentMethodService.getBy(buyer.getId(), operation.getPaymentRequest().getPaymentMethodData());
         operation.setPaymentMethod(buyerPaymentMethod);
 
