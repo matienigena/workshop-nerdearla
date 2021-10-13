@@ -7,7 +7,7 @@ import com.nerdearla.workshop.payment.provider.PaymentIdProvider;
 import com.nerdearla.workshop.payment.repository.PaymentRepository;
 import com.nerdearla.workshop.paymentMethod.BuyerPaymentMethod;
 import com.nerdearla.workshop.paymentMethod.PaymentMethodService;
-import com.nerdearla.workshop.authorization.GatewayService;
+import com.nerdearla.workshop.authorization.AuthorizationService;
 import com.nerdearla.workshop.user.buyer.Buyer;
 import com.nerdearla.workshop.user.buyer.BuyerService;
 import com.nerdearla.workshop.qr.QR;
@@ -21,7 +21,7 @@ public class PaymentService {
 
     private final PaymentIdProvider paymentIdProvider;
     private final PaymentMethodService paymentMethodService;
-    private final GatewayService gatewayService;
+    private final AuthorizationService gatewayService;
     private final BuyerService buyerService;
     private final SellerService sellerService;
     private final QRService qrService;
@@ -30,7 +30,7 @@ public class PaymentService {
     public PaymentService(
             PaymentIdProvider paymentIdProvider,
             PaymentMethodService paymentMethodService,
-            GatewayService gatewayService,
+            AuthorizationService gatewayService,
             BuyerService buyerService,
             SellerService sellerService,
             PaymentRepository paymentRepository,
