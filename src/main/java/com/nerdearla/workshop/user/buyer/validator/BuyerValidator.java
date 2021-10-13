@@ -16,7 +16,7 @@ public class BuyerValidator {
     }
 
     private void validateIsEnabled(Buyer buyer) {
-        if (!buyer.getEnabled()) {
+        if (Boolean.FALSE.equals(buyer.getEnabled())) {
             LOGGER.error("buyer {} is disabled", buyer.getId());
             throw new DisabledBuyerError();
         }
