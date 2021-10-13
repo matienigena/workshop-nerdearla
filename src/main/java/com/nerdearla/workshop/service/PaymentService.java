@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 public class PaymentService {
 
     private final PaymentIdProvider paymentIdProvider;
-    private final UserService userService;
     private final PaymentMethodService paymentMethodService;
     private final FraudService fraudService;
     private final GatewayService gatewayService;
@@ -19,7 +18,6 @@ public class PaymentService {
 
     public PaymentService(
             PaymentIdProvider paymentIdProvider,
-            UserService userService,
             PaymentMethodService paymentMethodService,
             FraudService fraudService,
             GatewayService gatewayService,
@@ -29,7 +27,6 @@ public class PaymentService {
             QRService qrService
     ) {
         this.paymentIdProvider = paymentIdProvider;
-        this.userService = userService;
         this.paymentMethodService = paymentMethodService;
         this.fraudService = fraudService;
         this.gatewayService = gatewayService;
@@ -49,15 +46,15 @@ public class PaymentService {
 
         // validar amount e installments?
 
-        User buyer = userService.findValidUser(operation.getPaymentRequest().getBuyerId());
-        operation.setBuyer(buyerService.findBuyer(buyer.getId()));
+        Buyer buyer = buyerService.findBuyer(operation.getPaymentRequest().getBuyerId());
+        operation.setBuyer(buyer);
 
         // Obtener paymentMethod y agregarlo a operation?
-        PaymentMethod paymentMethod = paymentMethodService.authorize(operation.getPaymentRequest().getPaymentMethodData());
-        operation.setPaymentMethod(paymentMethod);
+        BuyerPaymentMethod buyerPaymentMethod = paymentMethodService.getBy(buyer.getId(), operation.getPaymentRequest().getPaymentMethodData());
+        operation.setPaymentMethod(buyerPaymentMethod);
 
-        User seller = userService.findValidUser(operation.getPaymentRequest().getSellerId());
-        operation.setSeller(sellerService.findSeller(seller.getId()));
+        Seller seller = sellerService.findSeller(operation.getPaymentRequest().getSellerId());
+        operation.setSeller(seller);
 
         // FraudResult que se persista
         fraudService.authorize(operation);

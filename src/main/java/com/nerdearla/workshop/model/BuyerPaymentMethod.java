@@ -1,6 +1,6 @@
 package com.nerdearla.workshop.model;
 
-public class PaymentMethod {
+public class BuyerPaymentMethod {
 
     private String paymentMethodId;
 

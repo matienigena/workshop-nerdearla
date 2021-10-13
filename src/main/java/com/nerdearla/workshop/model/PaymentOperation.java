@@ -9,7 +9,7 @@ public class PaymentOperation {
     private QR qr;
     private Buyer buyer;
     private Seller seller;
-    private PaymentMethod paymentMethod;
+    private BuyerPaymentMethod buyerPaymentMethod;
 
     public PaymentOperation(PaymentRequest paymentRequest) {
         this.paymentRequest = paymentRequest;
@@ -43,12 +43,12 @@ public class PaymentOperation {
         this.seller = seller;
     }
 
-    public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
+    public BuyerPaymentMethod getPaymentMethod() {
+        return buyerPaymentMethod;
     }
 
-    public void setPaymentMethod(PaymentMethod paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public void setPaymentMethod(BuyerPaymentMethod buyerPaymentMethod) {
+        this.buyerPaymentMethod = buyerPaymentMethod;
     }
 
     public QR getQr() {
