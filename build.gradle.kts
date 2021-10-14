@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -16,23 +17,23 @@ repositories {
     mavenCentral()
 }
 
-extra["mockkVersion"] = "1.10.0"
-extra["kotest_version"] = "4.1.1"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-webflux")
+    implementation ("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation ("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:${property("kotest_version")}")
-    testImplementation("io.kotest:kotest-extensions-spring:${property("kotest_version")}")
-    testImplementation("io.kotest:kotest-runner-console-jvm:${property("kotest_version")}")
-    testImplementation("io.mockk:mockk:${property("mockkVersion")}")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:4.6.3")
+    testImplementation("io.kotest:kotest-extensions-spring:4.4.3")
+    testImplementation("io.kotest:kotest-runner-console-jvm:4.1.3.2")
+    testImplementation("io.mockk:mockk:1.12.0")
 
 }
 
@@ -45,6 +46,10 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.5"
 }
 
 tasks.jacocoTestReport {
@@ -62,7 +67,7 @@ tasks.test {
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
     }
     testLogging {
-        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        exceptionFormat = FULL
         events("PASSED", "FAILED", "SKIPPED")
     }
 }
