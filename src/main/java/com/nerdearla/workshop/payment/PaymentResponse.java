@@ -1,4 +1,4 @@
-package com.nerdearla.workshop.payment.model;
+package com.nerdearla.workshop.payment;
 
 import java.util.Objects;
 

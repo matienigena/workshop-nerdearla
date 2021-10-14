@@ -1,11 +1,9 @@
-package com.nerdearla.workshop.payment.controller;
+package com.nerdearla.workshop.payment;
 
 import com.nerdearla.workshop.operation.PaymentOperation;
-import com.nerdearla.workshop.payment.PaymentService;
 import com.nerdearla.workshop.payment.mapper.PaymentResponseMapper;
 import com.nerdearla.workshop.payment.model.Payment;
-import com.nerdearla.workshop.payment.model.PaymentRequest;
-import com.nerdearla.workshop.payment.model.PaymentResponse;
+import com.nerdearla.workshop.payment.service.PaymentService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

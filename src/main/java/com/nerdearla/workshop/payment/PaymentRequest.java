@@ -1,4 +1,8 @@
-package com.nerdearla.workshop.payment.model;
+package com.nerdearla.workshop.payment;
+
+
+import com.nerdearla.workshop.payment.model.PaymentMethodData;
+import com.nerdearla.workshop.payment.model.TerminalData;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;

@@ -1,4 +1,4 @@
-package com.nerdearla.workshop.payment;
+package com.nerdearla.workshop.payment.service;
 
 import com.nerdearla.workshop.authorization.AuthorizationService;
 import com.nerdearla.workshop.authorization.PaymentAuthorization;
