@@ -20,7 +20,7 @@ public class PaymentMethodValidator {
     }
 
     private void validateIsEnabled(BuyerPaymentMethod buyerPaymentMethod) {
-        if (!buyerPaymentMethod.getEnabled()) {
+        if (Boolean.FALSE.equals(buyerPaymentMethod.getEnabled())) {
             LOGGER.error("Payment method {} is not enabled", buyerPaymentMethod.getId());
             throw new DisabledPaymentMethodError();
         }
