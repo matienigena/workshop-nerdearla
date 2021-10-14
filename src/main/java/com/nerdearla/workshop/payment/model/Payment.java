@@ -75,7 +75,7 @@ public class Payment {
             this.qrId = operation.getQr().getId();
             this.paymentMethodId = operation.getPaymentMethod().getId();
             this.buyerId = operation.getBuyer().getId();
-            this.sellerId = operation.getSeller().getSellerId();
+            this.sellerId = operation.getSeller().getId();
             this.amount = operation.getPaymentRequest().getAmount();
         }
 

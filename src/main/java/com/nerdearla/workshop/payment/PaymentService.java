@@ -21,7 +21,7 @@ public class PaymentService {
 
     private final PaymentIdProvider paymentIdProvider;
     private final PaymentMethodService paymentMethodService;
-    private final AuthorizationService gatewayService;
+    private final AuthorizationService authorizationService;
     private final BuyerService buyerService;
     private final SellerService sellerService;
     private final QRService qrService;
@@ -38,7 +38,7 @@ public class PaymentService {
     ) {
         this.paymentIdProvider = paymentIdProvider;
         this.paymentMethodService = paymentMethodService;
-        this.gatewayService = gatewayService;
+        this.authorizationService = gatewayService;
         this.buyerService = buyerService;
         this.sellerService = sellerService;
         this.paymentRepository = paymentRepository;
@@ -61,7 +61,7 @@ public class PaymentService {
         Seller seller = sellerService.findSeller(operation.getPaymentRequest().getSellerId());
         operation.setSeller(seller);
 
-        PaymentAuthorization authorization = gatewayService.authorize(operation);
+        PaymentAuthorization authorization = authorizationService.authorize(operation);
 
         Payment payment = new Payment.PaymentBuilder(operation, authorization).build();
         paymentRepository.save(payment);

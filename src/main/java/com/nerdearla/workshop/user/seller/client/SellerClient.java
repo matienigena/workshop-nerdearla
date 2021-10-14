@@ -2,6 +2,7 @@ package com.nerdearla.workshop.user.seller.client;
 
 import com.nerdearla.workshop.shared.client.GetClient;
 import com.nerdearla.workshop.user.seller.Seller;
+import com.nerdearla.workshop.user.seller.error.SellerRetrievingError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -18,11 +19,10 @@ public class SellerClient extends GetClient<Seller> {
         this.webClient = webClient;
     }
 
-    // TODO: add exception
     @Override
     protected Mono<Throwable> handleError(ClientResponse clientResponse) {
         LOGGER.error("Error while communicating with seller service, {}", clientResponse);
-        return Mono.error(new RuntimeException());
+        return Mono.error(new SellerRetrievingError());
     }
 
     @Override
