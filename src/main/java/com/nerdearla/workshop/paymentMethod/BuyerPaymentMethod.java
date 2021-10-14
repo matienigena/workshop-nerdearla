@@ -3,7 +3,7 @@ package com.nerdearla.workshop.paymentMethod;
 public class BuyerPaymentMethod {
 
     private String id;
-    private String enabled;
+    private Boolean enabled;
     private String type;
     private String token;
     private String securityCode;
@@ -30,5 +30,21 @@ public class BuyerPaymentMethod {
 
     public void setSecurityCode(String securityCode) {
         this.securityCode = securityCode;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
