@@ -24,7 +24,7 @@ public class PaymentMethodValidator {
             LOGGER.error("Payment method {} is not enabled", buyerPaymentMethod.getId());
             throw new DisabledPaymentMethodError();
         }
-        LOGGER.error("Payment method {} is enabled", buyerPaymentMethod.getId());
+        LOGGER.info("Payment method {} is enabled", buyerPaymentMethod.getId());
     }
 
     private void validateSecurityCode(String expected, String actual) {
@@ -32,7 +32,7 @@ public class PaymentMethodValidator {
             LOGGER.error("securityCode {} doesnt match expectation", actual);
             throw new DisabledPaymentMethodError();
         }
-        LOGGER.error("securityCode validated successfully");
+        LOGGER.info("securityCode validated successfully");
     }
 
     private void validateToken(String expected, String actual) {
@@ -40,6 +40,6 @@ public class PaymentMethodValidator {
             LOGGER.error("token {} doesnt match expectation", actual);
             throw new DisabledPaymentMethodError();
         }
-        LOGGER.error("token validated successfully");
+        LOGGER.info("token validated successfully");
     }
 }

@@ -1,5 +1,8 @@
 package com.nerdearla.workshop.user.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class Address {
@@ -11,7 +14,15 @@ public class Address {
     private final String postalCode;
     private final String state;
 
-    public Address(String id, String city, String country, String line1, String line2, String postalCode, String state) {
+    @JsonCreator
+    public Address(
+            @JsonProperty("id") String id,
+            @JsonProperty("city") String city,
+            @JsonProperty("country") String country,
+            @JsonProperty("line1") String line1,
+            @JsonProperty("line2") String line2,
+            @JsonProperty("postalCode") String postalCode,
+            @JsonProperty("state") String state) {
         this.id = id;
         this.city = city;
         this.country = country;

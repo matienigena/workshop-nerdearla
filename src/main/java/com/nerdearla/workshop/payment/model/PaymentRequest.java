@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class PaymentRequest {
 
-    @Pattern(regexp = "^[0-9]*$", message = "qr_id must be numeric")
+    // @Pattern(regexp = "^[0-9]*$", message = "qr_id must be numeric")
     private String qrId;
 
     @Pattern(regexp = "^[0-9]*$", message = "buyer_id must be numeric")
