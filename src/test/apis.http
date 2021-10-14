@@ -1,0 +1,24 @@
+POST http://localhost:8080/api/payments
+x-api-key: dso4UMgSxh6cZx4ZfcW946r1ZpPN6Peu4MkUyHna
+content-type: application/json
+
+{
+    "qrId": "1312312314klsdfs1",
+    "buyerIdentification": "12345678",
+    "buyerGender": "M",
+    "buyerId": "1",
+    "sellerId": "2",
+    "amount": 1000.00,
+    "installments": 3,
+    "terminalData": {
+        "establishmentId": "010",
+        "terminalNumber": "03305",
+        "traceNumber": "111432545",
+        "ticketNumber": "11340566",
+        "transactionDatetime": "2021-09-29T07:36:09+0000"
+    },
+    "paymentMethodData": {
+        "token": "dGVzdDEyM2tna2ZrMzExMzQ",
+        "securityCode": "123"
+    }
+}
