@@ -72,7 +72,7 @@ public class Payment {
             this.paymentId = operation.getPaymentId();
             this.authorizationId = authorization.getId();
             this.traceNumber = operation.getPaymentRequest().getTerminalData().getTraceNumber();
-            this.qrId = operation.getQr().getQrId();
+            this.qrId = operation.getQr().getId();
             this.paymentMethodId = operation.getPaymentMethod().getId();
             this.buyerId = operation.getBuyer().getId();
             this.sellerId = operation.getSeller().getSellerId();

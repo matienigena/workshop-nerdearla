@@ -49,7 +49,7 @@ public class PaymentService {
         String id = paymentIdProvider.getNext();
         operation.setPaymentId(id);
 
-        QR qr = qrService.findValidQR(operation.getPaymentRequest().getQrId());
+        QR qr = qrService.getBy(operation.getPaymentRequest().getQrId());
         operation.setQr(qr);
 
         Buyer buyer = buyerService.findBuyer(operation.getPaymentRequest().getBuyerId());

@@ -1,5 +1,6 @@
 package com.nerdearla.workshop.qr.client;
 
+import com.nerdearla.workshop.qr.error.QRRetrievingError;
 import com.nerdearla.workshop.shared.client.GetClient;
 import com.nerdearla.workshop.qr.QR;
 import org.slf4j.Logger;
@@ -18,11 +19,10 @@ public class QRClient extends GetClient<QR> {
         this.webClient = webClient;
     }
 
-    // TODO: add exception
     @Override
     protected Mono<Throwable> handleError(ClientResponse clientResponse) {
         LOGGER.error("Error while communicating with QR service, {}", clientResponse);
-        return Mono.error(new RuntimeException());
+        return Mono.error(new QRRetrievingError());
     }
 
     @Override

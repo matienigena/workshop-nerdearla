@@ -2,13 +2,22 @@ package com.nerdearla.workshop.qr;
 
 public class QR {
 
-    private String qrId;
+    private String id;
+    private Boolean enabled;
 
-    public String getQrId() {
-        return qrId;
+    public String getId() {
+        return id;
     }
 
-    public void setQrId(String qrId) {
-        this.qrId = qrId;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }
