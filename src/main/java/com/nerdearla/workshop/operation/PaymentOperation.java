@@ -1,9 +1,9 @@
 package com.nerdearla.workshop.operation;
 
-import com.nerdearla.workshop.paymentMethod.BuyerPaymentMethod;
-import com.nerdearla.workshop.user.buyer.Buyer;
 import com.nerdearla.workshop.payment.model.PaymentRequest;
+import com.nerdearla.workshop.paymentMethod.BuyerPaymentMethod;
 import com.nerdearla.workshop.qr.QR;
+import com.nerdearla.workshop.user.buyer.Buyer;
 import com.nerdearla.workshop.user.seller.Seller;
 
 public class PaymentOperation {

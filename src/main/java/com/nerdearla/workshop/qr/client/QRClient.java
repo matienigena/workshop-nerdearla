@@ -1,8 +1,8 @@
 package com.nerdearla.workshop.qr.client;
 
+import com.nerdearla.workshop.qr.QR;
 import com.nerdearla.workshop.qr.error.QRRetrievingError;
 import com.nerdearla.workshop.shared.client.GetClient;
-import com.nerdearla.workshop.qr.QR;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

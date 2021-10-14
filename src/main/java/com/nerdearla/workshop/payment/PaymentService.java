@@ -1,5 +1,6 @@
 package com.nerdearla.workshop.payment;
 
+import com.nerdearla.workshop.authorization.AuthorizationService;
 import com.nerdearla.workshop.authorization.PaymentAuthorization;
 import com.nerdearla.workshop.operation.PaymentOperation;
 import com.nerdearla.workshop.payment.model.Payment;
@@ -7,11 +8,10 @@ import com.nerdearla.workshop.payment.provider.PaymentIdProvider;
 import com.nerdearla.workshop.payment.repository.PaymentRepository;
 import com.nerdearla.workshop.paymentMethod.BuyerPaymentMethod;
 import com.nerdearla.workshop.paymentMethod.PaymentMethodService;
-import com.nerdearla.workshop.authorization.AuthorizationService;
-import com.nerdearla.workshop.user.buyer.Buyer;
-import com.nerdearla.workshop.user.buyer.BuyerService;
 import com.nerdearla.workshop.qr.QR;
 import com.nerdearla.workshop.qr.QRService;
+import com.nerdearla.workshop.user.buyer.Buyer;
+import com.nerdearla.workshop.user.buyer.BuyerService;
 import com.nerdearla.workshop.user.seller.Seller;
 import com.nerdearla.workshop.user.seller.SellerService;
 import org.springframework.stereotype.Service;

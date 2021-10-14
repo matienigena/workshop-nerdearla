@@ -1,9 +1,8 @@
 package com.nerdearla.workshop.paymentMethod;
 
-import com.nerdearla.workshop.paymentMethod.client.PaymentMethodClient;
 import com.nerdearla.workshop.payment.model.PaymentMethodData;
+import com.nerdearla.workshop.paymentMethod.client.PaymentMethodClient;
 import com.nerdearla.workshop.paymentMethod.validator.PaymentMethodValidator;
-import com.nerdearla.workshop.user.buyer.Buyer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package com.nerdearla.workshop.paymentMethod.validator;
 
-import com.nerdearla.workshop.authorization.AuthorizationService;
 import com.nerdearla.workshop.payment.model.PaymentMethodData;
 import com.nerdearla.workshop.paymentMethod.BuyerPaymentMethod;
 import com.nerdearla.workshop.paymentMethod.error.DisabledPaymentMethodError;
