@@ -29,6 +29,7 @@ class PaymentService(
 
     private fun InitialOperation.expandEntities() =
         expandedOperationProvider.provide(this)
+            .log { info("operation expanded {}", it) }
 
     private fun ExpandedOperation.authorize() =
         gatewayService.authorize(this)
@@ -48,6 +49,7 @@ class PaymentService(
 
     private fun save(payment: Payment) =
         paymentRepository.save(payment)
+            .log { info("payment {} saved", payment.id) }
 
     companion object : CompanionLogger()
 }

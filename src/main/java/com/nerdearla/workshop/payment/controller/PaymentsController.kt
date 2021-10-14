@@ -6,6 +6,7 @@ import com.nerdearla.workshop.payment.mapper.PaymentResponseMapper
 import com.nerdearla.workshop.payment.model.Payment
 import com.nerdearla.workshop.payment.model.PaymentRequest
 import com.nerdearla.workshop.payment.model.PaymentResponse
+import com.nerdearla.workshop.shared.utils.CompanionLogger
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -41,8 +42,11 @@ class PaymentsController(
 
     private fun InitialOperation.process() =
         paymentsService.processPayment(this)
+            .log { info("payment processed: {}", it) }
 
     private fun Payment.toResponse() =
         paymentResponseMapper.map(this)
+            .log { info("payment response {}", it) }
 
+    companion object : CompanionLogger()
 }
