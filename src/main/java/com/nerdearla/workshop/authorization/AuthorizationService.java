@@ -19,9 +19,9 @@ public class AuthorizationService {
     private final AuthorizationMapper mapper;
 
     public AuthorizationService(
-            @Autowired AuthorizationClient client,
-            @Autowired PaymentAuthorizationValidator validator,
-            @Autowired AuthorizationMapper mapper) {
+            AuthorizationClient client,
+            PaymentAuthorizationValidator validator,
+            AuthorizationMapper mapper) {
         this.client = client;
         this.validator = validator;
         this.mapper = mapper;

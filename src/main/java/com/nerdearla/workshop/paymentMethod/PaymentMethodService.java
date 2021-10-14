@@ -17,8 +17,8 @@ public class PaymentMethodService {
     private final PaymentMethodValidator validator;
 
     public PaymentMethodService(
-            @Autowired PaymentMethodClient client,
-            @Autowired PaymentMethodValidator validator) {
+            PaymentMethodClient client,
+            PaymentMethodValidator validator) {
         this.client = client;
         this.validator = validator;
     }

@@ -11,7 +11,7 @@ public class BuyerService {
     private final BuyerClient client;
     private final BuyerValidator validator;
 
-    public BuyerService(@Autowired BuyerClient client, @Autowired BuyerValidator validator) {
+    public BuyerService(BuyerClient client, BuyerValidator validator) {
         this.client = client;
         this.validator = validator;
     }

@@ -15,7 +15,7 @@ public class SellerService {
     private final SellerClient client;
     private final SellerValidator validator;
 
-    public SellerService(@Autowired SellerClient client, @Autowired SellerValidator validator) {
+    public SellerService(SellerClient client, SellerValidator validator) {
         this.client = client;
         this.validator = validator;
     }

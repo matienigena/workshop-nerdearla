@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class AuthorizationClient extends PostClient<PaymentAuthorizationResponse, PaymentAuthorizationRequest> {
 
-    public AuthorizationClient(@Autowired WebClient webClient) {
+    public AuthorizationClient(WebClient webClient) {
         this.webClient = webClient;
     }
     // TODO: exception
