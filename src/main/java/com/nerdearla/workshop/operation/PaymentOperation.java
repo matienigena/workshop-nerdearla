@@ -6,6 +6,8 @@ import com.nerdearla.workshop.qr.QR;
 import com.nerdearla.workshop.user.buyer.Buyer;
 import com.nerdearla.workshop.user.seller.Seller;
 
+import java.util.Objects;
+
 public class PaymentOperation {
 
     private final PaymentRequest paymentRequest;
@@ -61,5 +63,30 @@ public class PaymentOperation {
 
     public void setQr(QR qr) {
         this.qr = qr;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PaymentOperation that = (PaymentOperation) o;
+        return Objects.equals(paymentRequest, that.paymentRequest) && Objects.equals(paymentId, that.paymentId) && Objects.equals(qr, that.qr) && Objects.equals(buyer, that.buyer) && Objects.equals(seller, that.seller) && Objects.equals(buyerPaymentMethod, that.buyerPaymentMethod);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(paymentRequest, paymentId, qr, buyer, seller, buyerPaymentMethod);
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentOperation{" +
+                "paymentRequest=" + paymentRequest +
+                ", paymentId='" + paymentId + '\'' +
+                ", qr=" + qr +
+                ", buyer=" + buyer +
+                ", seller=" + seller +
+                ", buyerPaymentMethod=" + buyerPaymentMethod +
+                '}';
     }
 }

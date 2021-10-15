@@ -1,6 +1,6 @@
 package com.nerdearla.workshop.paymentMethod;
 
-import com.nerdearla.workshop.payment.model.PaymentMethodData;
+import com.nerdearla.workshop.payment.service.model.PaymentMethodData;
 import com.nerdearla.workshop.paymentMethod.client.PaymentMethodClient;
 import com.nerdearla.workshop.paymentMethod.validator.PaymentMethodValidator;
 import org.slf4j.Logger;

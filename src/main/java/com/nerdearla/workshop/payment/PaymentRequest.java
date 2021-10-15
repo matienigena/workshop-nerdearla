@@ -1,95 +1,67 @@
 package com.nerdearla.workshop.payment;
 
 
-import com.nerdearla.workshop.payment.model.PaymentMethodData;
-import com.nerdearla.workshop.payment.model.TerminalData;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.nerdearla.workshop.payment.service.model.PaymentMethodData;
+import com.nerdearla.workshop.payment.service.model.TerminalData;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 import java.util.Objects;
 
 public class PaymentRequest {
 
-    // @Pattern(regexp = "^[0-9]*$", message = "qr_id must be numeric")
-    private String qrId;
+    private final String qrId;
+    private final String buyerId;
+    private final String sellerId;
+    private final Double amount;
+    private final Integer installments;
+    private final TerminalData terminalData;
+    private final PaymentMethodData paymentMethodData;
 
-    @Pattern(regexp = "^[0-9]*$", message = "buyer_id must be numeric")
-    private String buyerId;
-
-    @Pattern(regexp = "^[0-9]*$", message = "seller_id must be numeric")
-    private String sellerId;
-
-    @Min(value = 1, message = "amount must be at least 1")
-    private Double amount;
-
-    @Positive(message = "installment must be positive")
-    private Integer installments;
-
-    @Valid
-    private TerminalData terminalData;
-
-    @Valid
-    private PaymentMethodData paymentMethodData;
-
-    public PaymentRequest() {
+    @JsonCreator
+    public PaymentRequest(
+            @JsonProperty("qrId") String qrId,
+            @JsonProperty("buyerId") String buyerId,
+            @JsonProperty("sellerId") String sellerId,
+            @JsonProperty("amount") Double amount,
+            @JsonProperty("installments") Integer installments,
+            @JsonProperty("terminalData") TerminalData terminalData,
+            @JsonProperty("paymentMethodData") PaymentMethodData paymentMethodData) {
+        this.qrId = qrId;
+        this.buyerId = buyerId;
+        this.sellerId = sellerId;
+        this.amount = amount;
+        this.installments = installments;
+        this.terminalData = terminalData;
+        this.paymentMethodData = paymentMethodData;
     }
 
     public String getQrId() {
         return qrId;
     }
 
-    public void setQrId(String qrId) {
-        this.qrId = qrId;
-    }
-
     public String getBuyerId() {
         return buyerId;
-    }
-
-    public void setBuyerId(String buyerId) {
-        this.buyerId = buyerId;
     }
 
     public String getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(String sellerId) {
-        this.sellerId = sellerId;
-    }
-
     public Double getAmount() {
         return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
     }
 
     public Integer getInstallments() {
         return installments;
     }
 
-    public void setInstallments(Integer installments) {
-        this.installments = installments;
-    }
-
     public TerminalData getTerminalData() {
         return terminalData;
     }
 
-    public void setTerminalData(TerminalData terminalData) {
-        this.terminalData = terminalData;
-    }
-
     public PaymentMethodData getPaymentMethodData() {
         return paymentMethodData;
-    }
-
-    public void setPaymentMethodData(PaymentMethodData paymentMethodData) {
-        this.paymentMethodData = paymentMethodData;
     }
 
     @Override
@@ -114,7 +86,7 @@ public class PaymentRequest {
                 ", amount=" + amount +
                 ", installments=" + installments +
                 ", terminalData=" + terminalData +
-                ", paymentMethod=" + paymentMethodData +
+                ", paymentMethodData=" + paymentMethodData +
                 '}';
     }
 }

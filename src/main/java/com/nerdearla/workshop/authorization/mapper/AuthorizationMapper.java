@@ -1,8 +1,8 @@
 package com.nerdearla.workshop.authorization.mapper;
 
 import com.nerdearla.workshop.authorization.PaymentAuthorization;
-import com.nerdearla.workshop.authorization.PaymentAuthorizationRequest;
-import com.nerdearla.workshop.authorization.PaymentAuthorizationResponse;
+import com.nerdearla.workshop.authorization.client.PaymentAuthorizationRequest;
+import com.nerdearla.workshop.authorization.client.PaymentAuthorizationResponse;
 import com.nerdearla.workshop.operation.PaymentOperation;
 import org.springframework.stereotype.Component;
 

@@ -1,65 +1,50 @@
-package com.nerdearla.workshop.payment.model;
+package com.nerdearla.workshop.payment.service.model;
 
-import javax.validation.constraints.Pattern;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class TerminalData {
 
-    @Pattern(regexp = "^[0-9]*$", message = "establishment_id must be numeric")
-    private String establishmentId;
+    private final String establishmentId;
+    private final String terminalNumber;
+    private final String traceNumber;
+    private final String ticketNumber;
+    private final String transactionDatetime;
 
-    @Pattern(regexp = "^[0-9]*$", message = "terminal_number must be numeric")
-    private String terminalNumber;
-
-    @Pattern(regexp = "^[0-9]*$", message = "trace_number must be numeric")
-    private String traceNumber;
-
-    @Pattern(regexp = "^[0-9]*$", message = "ticket_number must be numeric")
-    private String ticketNumber;
-
-    private String transactionDatetime;
-
-    public TerminalData() {
+    @JsonCreator
+    public TerminalData(
+            @JsonProperty("establishmentId") String establishmentId,
+            @JsonProperty("terminalNumber") String terminalNumber,
+            @JsonProperty("traceNumber") String traceNumber,
+            @JsonProperty("ticketNumber") String ticketNumber,
+            @JsonProperty("transactionDatetime") String transactionDatetime) {
+        this.establishmentId = establishmentId;
+        this.terminalNumber = terminalNumber;
+        this.traceNumber = traceNumber;
+        this.ticketNumber = ticketNumber;
+        this.transactionDatetime = transactionDatetime;
     }
 
     public String getEstablishmentId() {
         return establishmentId;
     }
 
-    public void setEstablishmentId(String establishmentId) {
-        this.establishmentId = establishmentId;
-    }
-
     public String getTerminalNumber() {
         return terminalNumber;
-    }
-
-    public void setTerminalNumber(String terminalNumber) {
-        this.terminalNumber = terminalNumber;
     }
 
     public String getTraceNumber() {
         return traceNumber;
     }
 
-    public void setTraceNumber(String traceNumber) {
-        this.traceNumber = traceNumber;
-    }
-
     public String getTicketNumber() {
         return ticketNumber;
     }
 
-    public void setTicketNumber(String ticketNumber) {
-        this.ticketNumber = ticketNumber;
-    }
-
     public String getTransactionDatetime() {
         return transactionDatetime;
-    }
-
-    public void setTransactionDatetime(String transactionDatetime) {
-        this.transactionDatetime = transactionDatetime;
     }
 
     @Override

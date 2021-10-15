@@ -1,4 +1,6 @@
-package com.nerdearla.workshop.authorization;
+package com.nerdearla.workshop.authorization.client;
+
+import java.util.Objects;
 
 public class PaymentAuthorizationRequest {
 
@@ -73,5 +75,32 @@ public class PaymentAuthorizationRequest {
 
     public void setTransactionDatetime(String transactionDatetime) {
         this.transactionDatetime = transactionDatetime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PaymentAuthorizationRequest that = (PaymentAuthorizationRequest) o;
+        return Objects.equals(paymentMethodToken, that.paymentMethodToken) && Objects.equals(paymentMethodSecurityCode, that.paymentMethodSecurityCode) && Objects.equals(holderIdentification, that.holderIdentification) && Objects.equals(establishmentId, that.establishmentId) && Objects.equals(terminalNumber, that.terminalNumber) && Objects.equals(traceNumber, that.traceNumber) && Objects.equals(ticketNumber, that.ticketNumber) && Objects.equals(transactionDatetime, that.transactionDatetime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(paymentMethodToken, paymentMethodSecurityCode, holderIdentification, establishmentId, terminalNumber, traceNumber, ticketNumber, transactionDatetime);
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentAuthorizationRequest{" +
+                "paymentMethodToken='" + paymentMethodToken + '\'' +
+                ", paymentMethodSecurityCode='" + paymentMethodSecurityCode + '\'' +
+                ", holderIdentification='" + holderIdentification + '\'' +
+                ", establishmentId='" + establishmentId + '\'' +
+                ", terminalNumber='" + terminalNumber + '\'' +
+                ", traceNumber='" + traceNumber + '\'' +
+                ", ticketNumber='" + ticketNumber + '\'' +
+                ", transactionDatetime='" + transactionDatetime + '\'' +
+                '}';
     }
 }

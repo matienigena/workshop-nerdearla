@@ -14,9 +14,11 @@ public class PaymentAuthorizationValidator {
     private static final String ACCEPTED_STATUS = "ACCEPTED";
 
     public void validate(PaymentAuthorization paymentAuthorization) {
-        if(!ACCEPTED_STATUS.equals(paymentAuthorization.getStatus())) {
-            LOGGER.error("Payment not authorized");
+        if (!ACCEPTED_STATUS.equals(paymentAuthorization.getStatus())) {
+            LOGGER.error("payment not authorized");
             throw new PaymentNotAuthorizedError();
         }
+
+        LOGGER.info("payment status is ACCEPTED");
     }
 }

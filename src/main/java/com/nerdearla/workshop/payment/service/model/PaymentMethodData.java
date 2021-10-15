@@ -1,32 +1,29 @@
-package com.nerdearla.workshop.payment.model;
+package com.nerdearla.workshop.payment.service.model;
 
-import javax.validation.constraints.Pattern;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class PaymentMethodData {
 
-    private String token;
+    private final String token;
+    private final String securityCode;
 
-    @Pattern(regexp = "^[0-9]*$", message = "security_code must be numeric")
-    private String securityCode;
-
-    public PaymentMethodData() {
+    @JsonCreator
+    public PaymentMethodData(
+            @JsonProperty("token") String token,
+            @JsonProperty("securityCode") String securityCode) {
+        this.token = token;
+        this.securityCode = securityCode;
     }
 
     public String getToken() {
         return token;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public String getSecurityCode() {
         return securityCode;
-    }
-
-    public void setSecurityCode(String securityCode) {
-        this.securityCode = securityCode;
     }
 
     @Override

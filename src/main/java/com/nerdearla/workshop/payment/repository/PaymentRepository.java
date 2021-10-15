@@ -1,6 +1,6 @@
 package com.nerdearla.workshop.payment.repository;
 
-import com.nerdearla.workshop.payment.model.Payment;
+import com.nerdearla.workshop.payment.service.model.Payment;
 import org.springframework.stereotype.Repository;
 
 @Repository

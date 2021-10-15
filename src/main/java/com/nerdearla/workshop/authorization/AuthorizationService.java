@@ -1,12 +1,12 @@
 package com.nerdearla.workshop.authorization;
 
 import com.nerdearla.workshop.authorization.client.AuthorizationClient;
+import com.nerdearla.workshop.authorization.client.PaymentAuthorizationRequest;
 import com.nerdearla.workshop.authorization.mapper.AuthorizationMapper;
 import com.nerdearla.workshop.authorization.validator.PaymentAuthorizationValidator;
 import com.nerdearla.workshop.operation.PaymentOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

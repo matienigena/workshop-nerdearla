@@ -1,8 +1,10 @@
-package com.nerdearla.workshop.payment.model;
+package com.nerdearla.workshop.payment.service.model;
 
 
 import com.nerdearla.workshop.authorization.PaymentAuthorization;
 import com.nerdearla.workshop.operation.PaymentOperation;
+
+import java.util.Objects;
 
 public class Payment {
 
@@ -83,5 +85,32 @@ public class Payment {
         public Payment build() {
             return new Payment(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Payment payment = (Payment) o;
+        return Objects.equals(paymentId, payment.paymentId) && Objects.equals(authorizationId, payment.authorizationId) && Objects.equals(traceNumber, payment.traceNumber) && Objects.equals(qrId, payment.qrId) && Objects.equals(paymentMethodId, payment.paymentMethodId) && Objects.equals(amount, payment.amount) && Objects.equals(buyerId, payment.buyerId) && Objects.equals(sellerId, payment.sellerId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(paymentId, authorizationId, traceNumber, qrId, paymentMethodId, amount, buyerId, sellerId);
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentId='" + paymentId + '\'' +
+                ", authorizationId='" + authorizationId + '\'' +
+                ", traceNumber='" + traceNumber + '\'' +
+                ", qrId='" + qrId + '\'' +
+                ", paymentMethodId='" + paymentMethodId + '\'' +
+                ", amount=" + amount +
+                ", buyerId='" + buyerId + '\'' +
+                ", sellerId='" + sellerId + '\'' +
+                '}';
     }
 }
