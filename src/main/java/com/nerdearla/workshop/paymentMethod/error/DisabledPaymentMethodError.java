@@ -1,11 +1,12 @@
 package com.nerdearla.workshop.paymentMethod.error;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
+
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 public class DisabledPaymentMethodError extends ResponseStatusException {
 
     public DisabledPaymentMethodError() {
-        super(HttpStatus.UNPROCESSABLE_ENTITY, "Payment method disabled");
+        super(UNPROCESSABLE_ENTITY, "payment method disabled");
     }
 }

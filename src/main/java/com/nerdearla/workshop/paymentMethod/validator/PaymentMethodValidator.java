@@ -3,6 +3,8 @@ package com.nerdearla.workshop.paymentMethod.validator;
 import com.nerdearla.workshop.payment.model.PaymentMethodData;
 import com.nerdearla.workshop.paymentMethod.BuyerPaymentMethod;
 import com.nerdearla.workshop.paymentMethod.error.DisabledPaymentMethodError;
+import com.nerdearla.workshop.paymentMethod.error.InvalidSecurityCodeError;
+import com.nerdearla.workshop.paymentMethod.error.InvalidTokenError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -29,7 +31,7 @@ public class PaymentMethodValidator {
     private void validateSecurityCode(String expected, String actual) {
         if (!expected.equals(actual)) {
             LOGGER.error("securityCode {} doesnt match expectation", actual);
-            throw new DisabledPaymentMethodError();
+            throw new InvalidSecurityCodeError();
         }
         LOGGER.info("securityCode validated successfully");
     }
@@ -37,7 +39,7 @@ public class PaymentMethodValidator {
     private void validateToken(String expected, String actual) {
         if (!expected.equals(actual)) {
             LOGGER.error("token {} doesnt match expectation", actual);
-            throw new DisabledPaymentMethodError();
+            throw new InvalidTokenError();
         }
         LOGGER.info("token validated successfully");
     }

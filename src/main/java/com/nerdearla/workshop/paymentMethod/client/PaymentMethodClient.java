@@ -1,6 +1,7 @@
 package com.nerdearla.workshop.paymentMethod.client;
 
 import com.nerdearla.workshop.paymentMethod.BuyerPaymentMethod;
+import com.nerdearla.workshop.paymentMethod.error.PaymentMethodRetrievingError;
 import com.nerdearla.workshop.shared.client.GetClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +19,10 @@ public class PaymentMethodClient extends GetClient<BuyerPaymentMethod> {
         this.webClient = webClient;
     }
 
-    // TODO: add exception
     @Override
     protected Mono<Throwable> handleError(ClientResponse clientResponse) {
         LOGGER.error("Error while communicating with paymentMethod service, {}", clientResponse);
-        return Mono.error(new RuntimeException());
+        return Mono.error(new PaymentMethodRetrievingError());
     }
 
     @Override
@@ -32,7 +32,7 @@ public class PaymentMethodClient extends GetClient<BuyerPaymentMethod> {
 
     public BuyerPaymentMethod get(String buyerId, String token) {
         BuyerPaymentMethod buyerPaymentMethod = get(BuyerPaymentMethod.class, buyerId, token);
-        LOGGER.info("PaymentMethod found: {}", buyerPaymentMethod);
+        LOGGER.info("payment method found: {}", buyerPaymentMethod);
         return buyerPaymentMethod;
     }
 }
