@@ -24,7 +24,7 @@ class BuyerValidator {
     }
 
     private fun Buyer.validateExistingAddress() {
-        if (address != null) {
+        if (address == null) {
             log.error("buyer {} does not have address", id)
             throw AddressNonExistentError()
         }
