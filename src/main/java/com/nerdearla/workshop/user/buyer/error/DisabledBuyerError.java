@@ -1,4 +1,4 @@
-package com.nerdearla.workshop.user.buyer.client;
+package com.nerdearla.workshop.user.buyer.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

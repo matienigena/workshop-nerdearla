@@ -1,7 +1,8 @@
 package com.nerdearla.workshop.user.buyer.validator;
 
 import com.nerdearla.workshop.user.buyer.Buyer;
-import com.nerdearla.workshop.user.buyer.client.DisabledBuyerError;
+import com.nerdearla.workshop.user.buyer.error.AddressNonExistentError;
+import com.nerdearla.workshop.user.buyer.error.DisabledBuyerError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ public class BuyerValidator {
 
     public void validate(Buyer buyer) {
         validateIsEnabled(buyer);
+        validateExistingAddress(buyer);
     }
 
     private void validateIsEnabled(Buyer buyer) {
@@ -21,6 +23,14 @@ public class BuyerValidator {
             throw new DisabledBuyerError();
         }
         LOGGER.info("buyer {} is enabled", buyer.getId());
+    }
+
+    private void validateExistingAddress(Buyer buyer) {
+        if (buyer.getAddress() != null) {
+            LOGGER.error("buyer {} does not have address", buyer.getId());
+            throw new AddressNonExistentError();
+        }
+        LOGGER.info("buyer {} has address", buyer.getId());
     }
 
 }

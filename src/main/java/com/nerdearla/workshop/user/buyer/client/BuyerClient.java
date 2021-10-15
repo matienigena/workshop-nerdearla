@@ -2,6 +2,7 @@ package com.nerdearla.workshop.user.buyer.client;
 
 import com.nerdearla.workshop.shared.client.GetClient;
 import com.nerdearla.workshop.user.buyer.Buyer;
+import com.nerdearla.workshop.user.buyer.error.BuyerRetrievingError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,8 @@ public class BuyerClient extends GetClient<Buyer> {
     }
 
     @Override
-    protected Mono<Throwable> handleError(ClientResponse clientResponse) {
-        LOGGER.error("Error while communicating with buyer service, {}", clientResponse);
+    protected Mono<Throwable> handleError(ClientResponse response) {
+        LOGGER.error("Error while communicating with buyer service, {}", response);
         return Mono.error(new BuyerRetrievingError());
     }
 
@@ -31,7 +32,7 @@ public class BuyerClient extends GetClient<Buyer> {
 
     public Buyer getById(String id) {
         Buyer buyer = get(Buyer.class, id);
-        LOGGER.info("Buyer found: {}", buyer);
+        LOGGER.info("buyer found: {}", buyer);
         return buyer;
     }
 }

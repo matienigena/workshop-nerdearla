@@ -1,5 +1,7 @@
 package com.nerdearla.workshop.user.seller;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nerdearla.workshop.user.shared.Address;
 
 import java.util.Objects;
@@ -13,7 +15,14 @@ public class Seller {
     private final String email;
     private final Address address;
 
-    public Seller(String id, String identification, Boolean enabled, String name, String email, Address address) {
+    @JsonCreator
+    public Seller(
+            @JsonProperty("id") String id,
+            @JsonProperty("identification") String identification,
+            @JsonProperty("enabled") Boolean enabled,
+            @JsonProperty("name") String name,
+            @JsonProperty("email") String email,
+            @JsonProperty("address") Address address) {
         this.id = id;
         this.identification = identification;
         this.enabled = enabled;
