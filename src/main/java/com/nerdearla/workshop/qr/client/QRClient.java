@@ -32,7 +32,7 @@ public class QRClient extends GetClient<QR> {
 
     public QR getById(String id) {
         QR qr = get(QR.class, id);
-        LOGGER.info("QR found: {}", qr);
+        LOGGER.info("qr found: {}", qr);
         return qr;
     }
 }

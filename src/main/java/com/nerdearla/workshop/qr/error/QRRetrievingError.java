@@ -6,6 +6,6 @@ import org.springframework.web.server.ResponseStatusException;
 public class QRRetrievingError extends ResponseStatusException {
 
     public QRRetrievingError() {
-        super(HttpStatus.INTERNAL_SERVER_ERROR, "Error while retrieving QR");
+        super(HttpStatus.INTERNAL_SERVER_ERROR, "error while retrieving qr");
     }
 }

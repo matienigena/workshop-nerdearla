@@ -13,7 +13,7 @@ public class QRValidator {
 
     public void validate(QR qr) {
         if(!qr.getEnabled()) {
-            LOGGER.error("qr {} is not enabled", qr.getId());
+            LOGGER.error("qr {} disabled", qr.getId());
             throw new DisabledQrError();
         }
 

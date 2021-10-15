@@ -21,6 +21,7 @@ public class QRService {
 
     public QR getBy(String qrId) {
         QR qr = client.getById(qrId);
+        LOGGER.info("qr found: {}", qr.toString());
         validator.validate(qr);
         LOGGER.info("qr {} validated", qr.getId());
         return qr;
