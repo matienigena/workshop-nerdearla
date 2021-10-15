@@ -6,6 +6,6 @@ import org.springframework.web.server.ResponseStatusException;
 public class SellerRetrievingError extends ResponseStatusException {
 
     public SellerRetrievingError() {
-        super(HttpStatus.UNPROCESSABLE_ENTITY, "Error while retrieving seller");
+        super(HttpStatus.UNPROCESSABLE_ENTITY, "error while retrieving seller");
     }
 }

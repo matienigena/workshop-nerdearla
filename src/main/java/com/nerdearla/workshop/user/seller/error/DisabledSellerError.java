@@ -6,6 +6,6 @@ import org.springframework.web.server.ResponseStatusException;
 public class DisabledSellerError extends ResponseStatusException {
 
     public DisabledSellerError() {
-        super(HttpStatus.UNPROCESSABLE_ENTITY, "Seller is not enabled");
+        super(HttpStatus.UNPROCESSABLE_ENTITY, "seller disabled");
     }
 }

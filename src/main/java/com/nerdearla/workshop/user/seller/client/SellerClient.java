@@ -20,8 +20,8 @@ public class SellerClient extends GetClient<Seller> {
     }
 
     @Override
-    protected Mono<Throwable> handleError(ClientResponse clientResponse) {
-        LOGGER.error("Error while communicating with seller service, {}", clientResponse);
+    protected Mono<Throwable> handleError(ClientResponse response) {
+        LOGGER.error("Error while communicating with seller service, {}", response);
         return Mono.error(new SellerRetrievingError());
     }
 
@@ -32,7 +32,7 @@ public class SellerClient extends GetClient<Seller> {
 
     public Seller getById(String id) {
         Seller seller = get(Seller.class, id);
-        LOGGER.info("Seller found: {}", seller);
+        LOGGER.info("seller found: {}", seller);
         return seller;
     }
 }
