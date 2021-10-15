@@ -26,7 +26,7 @@ public class BuyerValidator {
     }
 
     private void validateExistingAddress(Buyer buyer) {
-        if (buyer.getAddress() != null) {
+        if (buyer.getAddress() == null) {
             LOGGER.error("buyer {} does not have address", buyer.getId());
             throw new AddressNonExistentError();
         }
