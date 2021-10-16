@@ -127,7 +127,7 @@ content-type: application/json
 
 > {%
 client.test("show error when buyer service fails", function() {
-  client.assert(response.status === 422, "Response status is not 422");
+  client.assert(response.status === 500, "Response status is not 500");
   client.assert(response.body.message === "error while retrieving seller", "Error message is not correct");
 });
 %}
