@@ -5,10 +5,8 @@ import com.nerdearla.workshop.payment.mapper.PaymentResponseMapper
 import com.nerdearla.workshop.payment.service.PaymentService
 import com.nerdearla.workshop.payment.service.model.Payment
 import com.nerdearla.workshop.shared.utils.CompanionLogger
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
@@ -19,6 +17,7 @@ class PaymentsController(
 ) {
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     fun processPayment(@RequestBody @Valid paymentRequest: PaymentRequest): PaymentResponse =
         paymentRequest
             .toOperation()

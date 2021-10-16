@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
+import org.springframework.validation.FieldError
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -39,6 +41,13 @@ class GlobalControllerAdvice {
             e.status
         ).log { info("error identified: {}", e.message) }
 
+
+    @ExceptionHandler(MethodArgumentNotValidException::class)
+    fun handleValidationException(e: MethodArgumentNotValidException): ResponseEntity<ErrorResponse> =
+        e.bindingResult.fieldError
+            .let {
+                ResponseEntity.badRequest().body(ErrorResponse(it?.defaultMessage ?: "request not readable"))
+            }
 
     companion object : CompanionLogger()
 
