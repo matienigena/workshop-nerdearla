@@ -6,27 +6,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nerdearla.workshop.payment.service.model.PaymentMethodData;
 import com.nerdearla.workshop.payment.service.model.TerminalData;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class PaymentRequest {
 
+    @NotBlank
     private final String qrId;
+    @NotBlank
     private final String buyerId;
+    @NotBlank
     private final String sellerId;
+    @Min(0)
     private final Double amount;
+    @Min(1)
     private final Integer installments;
+    @NotNull
     private final TerminalData terminalData;
+    @NotNull
     private final PaymentMethodData paymentMethodData;
 
     @JsonCreator
     public PaymentRequest(
-            @JsonProperty("qrId") String qrId,
-            @JsonProperty("buyerId") String buyerId,
-            @JsonProperty("sellerId") String sellerId,
+            @JsonProperty("qr_id") String qrId,
+            @JsonProperty("buyer_id") String buyerId,
+            @JsonProperty("seller_id") String sellerId,
             @JsonProperty("amount") Double amount,
             @JsonProperty("installments") Integer installments,
-            @JsonProperty("terminalData") TerminalData terminalData,
-            @JsonProperty("paymentMethodData") PaymentMethodData paymentMethodData) {
+            @JsonProperty("terminal_data") TerminalData terminalData,
+            @JsonProperty("payment_method_data") PaymentMethodData paymentMethodData) {
         this.qrId = qrId;
         this.buyerId = buyerId;
         this.sellerId = sellerId;

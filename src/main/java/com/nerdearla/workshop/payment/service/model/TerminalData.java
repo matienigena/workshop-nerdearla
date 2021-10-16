@@ -15,11 +15,11 @@ public class TerminalData {
 
     @JsonCreator
     public TerminalData(
-            @JsonProperty("establishmentId") String establishmentId,
-            @JsonProperty("terminalNumber") String terminalNumber,
-            @JsonProperty("traceNumber") String traceNumber,
-            @JsonProperty("ticketNumber") String ticketNumber,
-            @JsonProperty("transactionDatetime") String transactionDatetime) {
+            @JsonProperty("establishment_id") String establishmentId,
+            @JsonProperty("terminal_number") String terminalNumber,
+            @JsonProperty("trace_number") String traceNumber,
+            @JsonProperty("ticket_number") String ticketNumber,
+            @JsonProperty("transaction_datetime") String transactionDatetime) {
         this.establishmentId = establishmentId;
         this.terminalNumber = terminalNumber;
         this.traceNumber = traceNumber;

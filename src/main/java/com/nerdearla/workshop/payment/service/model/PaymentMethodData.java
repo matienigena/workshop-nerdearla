@@ -13,7 +13,7 @@ public class PaymentMethodData {
     @JsonCreator
     public PaymentMethodData(
             @JsonProperty("token") String token,
-            @JsonProperty("securityCode") String securityCode) {
+            @JsonProperty("security_code") String securityCode) {
         this.token = token;
         this.securityCode = securityCode;
     }

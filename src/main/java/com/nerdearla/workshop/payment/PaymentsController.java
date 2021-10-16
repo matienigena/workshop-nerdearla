@@ -6,10 +6,8 @@ import com.nerdearla.workshop.payment.service.model.Payment;
 import com.nerdearla.workshop.payment.service.PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -28,6 +26,7 @@ public class PaymentsController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public PaymentResponse processPayment(@Valid @RequestBody PaymentRequest paymentRequest) {
         PaymentOperation operation = new PaymentOperation(paymentRequest);
         return mapToResponse(process(operation));
@@ -41,7 +40,7 @@ public class PaymentsController {
 
     private PaymentResponse mapToResponse(Payment payment) {
         PaymentResponse paymentResponse = paymentResponseMapper.map(payment);
-        LOGGER.info("payment response {}", payment.toString());
+        LOGGER.info("payment response {}", payment);
         return paymentResponse;
     }
 }
