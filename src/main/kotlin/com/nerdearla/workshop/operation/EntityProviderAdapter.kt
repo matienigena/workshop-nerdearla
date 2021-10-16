@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
 
 @Component
-class ExpandedOperationProvider(
+class EntityProviderAdapter(
     @Qualifier("paymentIdProvider")
     private val paymentIdProvider: IdProvider,
     private val paymentMethodService: PaymentMethodService,
@@ -20,37 +20,26 @@ class ExpandedOperationProvider(
     private val qrService: QRService
 ) {
 
-    fun provide(initialOperation: InitialOperation): ExpandedOperation =
-        with(initialOperation) {
-            ExpandedOperation(
-                paymentId = getId(),
-                qr = getQrBy(qrId),
-                buyerPaymentMethod = getPaymentMethodBy(buyerId, paymentMethodData),
-                seller = getSellerBy(sellerId),
-                buyer = getBuyerBy(buyerId),
-                terminalData = terminalData,
-                amount = amount,
-                installments = installments
-            )
-        }
+    fun <T> provide(block: EntityProviderAdapter.() -> T): T =
+        block(this)
 
-    private fun getId() =
+    fun provideId() =
         paymentIdProvider.provide()
 
-    private fun getQrBy(id: String) =
-        qrService.getBy(id)
+    fun String.provideQr() =
+        qrService.getBy(this)
             .log { info("qr found: {}", it) }
 
-    private fun getBuyerBy(id: String) =
-        buyerService.getBy(id)
+    fun String.provideBuyer() =
+        buyerService.getBy(this)
             .log { info("buyer found: {}", it) }
 
-    private fun getSellerBy(id: String) =
-        sellerService.getBy(id)
+    fun String.provideSeller() =
+        sellerService.getBy(this)
             .log { info("seller found: {}", it) }
 
-    private fun getPaymentMethodBy(id: String, paymentMethodData: PaymentMethodData) =
-        paymentMethodService.getBy(id, paymentMethodData)
+    fun String.providerPaymentMethod(data: PaymentMethodData) =
+        paymentMethodService.getBy(this, data)
             .log { info("payment method found: {}", it) }
 
     companion object : CompanionLogger()

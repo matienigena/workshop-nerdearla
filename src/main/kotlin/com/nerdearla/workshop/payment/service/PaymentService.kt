@@ -3,7 +3,7 @@ package com.nerdearla.workshop.payment.service
 import com.nerdearla.workshop.authorization.GatewayService
 import com.nerdearla.workshop.operation.AuthorizedOperation
 import com.nerdearla.workshop.operation.ExpandedOperation
-import com.nerdearla.workshop.operation.ExpandedOperationProvider
+import com.nerdearla.workshop.operation.EntityProviderAdapter
 import com.nerdearla.workshop.operation.InitialOperation
 import com.nerdearla.workshop.payment.repository.PaymentRepository
 import com.nerdearla.workshop.payment.service.model.Payment
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class PaymentService(
-    private val expandedOperationProvider: ExpandedOperationProvider,
+    private val entityProviderAdapter: EntityProviderAdapter,
     private val gatewayService: GatewayService,
     private val paymentRepository: PaymentRepository
 ) {
@@ -25,7 +25,18 @@ class PaymentService(
             .also { save(it) }
 
     private fun InitialOperation.expandEntities() =
-        expandedOperationProvider.provide(this)
+        entityProviderAdapter.provide {
+            ExpandedOperation(
+                paymentId = provideId(),
+                qr = qrId.provideQr(),
+                buyerPaymentMethod = buyerId.providerPaymentMethod(paymentMethodData),
+                seller = sellerId.provideSeller(),
+                buyer = buyerId.provideBuyer(),
+                terminalData = terminalData,
+                amount = amount,
+                installments = installments
+            )
+        }
             .log { info("operation expanded {}", it) }
 
     private fun ExpandedOperation.authorize() =
