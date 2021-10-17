@@ -1,6 +1,6 @@
 package com.nerdearla.workshop.user.buyer.client
 
-import com.nerdearla.workshop.shared.client.Client
+import com.nerdearla.workshop.shared.client.get
 import com.nerdearla.workshop.shared.utils.CompanionLogger
 import com.nerdearla.workshop.user.buyer.Buyer
 import com.nerdearla.workshop.user.buyer.error.BuyerRetrievingError
@@ -11,18 +11,15 @@ import reactor.core.publisher.Mono
 
 @Component
 class BuyerClient(
-    webClient: WebClient
-) : Client(webClient) {
-
-    override val path = "/buyers/{buyerId}"
+    private val client: WebClient
+) {
 
     fun getBy(id: String): Buyer =
-        get(Buyer::class.java, id)
+        client.get<Buyer>("/buyers/{buyerId}", id, handler = ::mono)
             .log { info("buyer found: {}", it) }
 
-    override fun handleError(response: ClientResponse): Mono<Throwable> =
-        Mono.error<Throwable>(BuyerRetrievingError())
-            .log { error("Error while communicating with buyer service, {}", response) }
+    private fun mono(response: ClientResponse) = Mono.error<Throwable>(BuyerRetrievingError())
+        .log { error("Error while communicating with buyer service, {}", response) }
 
     companion object : CompanionLogger()
 }

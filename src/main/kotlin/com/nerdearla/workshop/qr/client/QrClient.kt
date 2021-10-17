@@ -1,8 +1,8 @@
 package com.nerdearla.workshop.qr.client
 
+import com.nerdearla.workshop.shared.client.get
 import com.nerdearla.workshop.qr.QR
 import com.nerdearla.workshop.qr.error.QrRetrievingError
-import com.nerdearla.workshop.shared.client.Client
 import com.nerdearla.workshop.shared.utils.CompanionLogger
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.ClientResponse
@@ -11,16 +11,14 @@ import reactor.core.publisher.Mono
 
 @Component
 class QrClient(
-    webClient: WebClient
-) : Client(webClient) {
-
-    override val path = "/qrs/{qrId}"
+    private val client: WebClient
+) {
 
     fun getBy(id: String): QR =
-        get(QR::class.java, id)
+        client.get<QR>("/qrs/{qrId}", id, handler = ::handleError)
             .log { info("qr found: {}", it) }
 
-    override fun handleError(response: ClientResponse): Mono<Throwable> =
+    private fun handleError(response: ClientResponse): Mono<Throwable> =
         Mono.error<Throwable>(QrRetrievingError())
             .log { error("Error while communicating with qr service, {}", response) }
 
