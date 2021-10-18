@@ -1,6 +1,6 @@
 package com.nerdearla.workshop.user.seller.client
 
-import com.nerdearla.workshop.shared.client.Client
+import com.nerdearla.workshop.shared.client.get
 import com.nerdearla.workshop.shared.utils.CompanionLogger
 import com.nerdearla.workshop.user.seller.Seller
 import com.nerdearla.workshop.user.seller.error.SellerRetrievingError
@@ -11,16 +11,14 @@ import reactor.core.publisher.Mono
 
 @Component
 class SellerClient(
-    webClient: WebClient
-) : Client(webClient) {
-
-    override val path = "/sellers/{sellerId}"
+    private val client: WebClient
+) {
 
     fun getBy(id: String): Seller =
-        get(Seller::class.java, id)
+        client.get<Seller>("/sellers/{sellerId}", id, handler = ::handleError)
             .log { info("seller found: {}", it) }
 
-    override fun handleError(response: ClientResponse): Mono<Throwable> =
+    private fun handleError(response: ClientResponse): Mono<Throwable> =
         Mono.error<Throwable>(SellerRetrievingError())
             .log { error("Error while communicating with seller service, {}", response) }
 
