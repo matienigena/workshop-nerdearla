@@ -1,3 +1,5 @@
+![](images/header_transparent.png)
+
 # De Java a Kotlin: Adoptar y refactorizar
 
 ## Acerca de este workshop
@@ -36,7 +38,4 @@ En este escenario, aparecen las siguientes entidades:
 
 **QR**: Representa el código QR a través del cual se cursa el pago
 
-La ejecución efectiva del pago es realizada por un gateway, que en el contexto del caso de uso se modela como una entidad **Authorization**. 
-
-
-![](images/footer_transparent.png)
+La ejecución efectiva del pago es realizada por un gateway, que en el contexto del caso de uso se modela como una entidad **Authorization**.
