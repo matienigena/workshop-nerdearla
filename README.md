@@ -1,6 +1,6 @@
-![](images/header_transparent.png)
-
 # De Java a Kotlin: Adoptar y refactorizar
+
+![](images/header_transparent.png)
 
 ## Acerca de este workshop
 
