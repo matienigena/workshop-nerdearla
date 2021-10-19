@@ -10,7 +10,6 @@ public class Payment {
 
     private final String paymentId;
     private final String authorizationId;
-    private final String traceNumber;
     private final String qrId;
     private final String paymentMethodId;
     private final Double amount;
@@ -20,7 +19,6 @@ public class Payment {
     public Payment(PaymentBuilder builder) {
         this.paymentId = builder.paymentId;
         this.authorizationId = builder.authorizationId;
-        this.traceNumber = builder.traceNumber;
         this.qrId = builder.qrId;
         this.paymentMethodId = builder.paymentMethodId;
         this.amount = builder.amount;
@@ -34,10 +32,6 @@ public class Payment {
 
     public String getAuthorizationId() {
         return authorizationId;
-    }
-
-    public String getTraceNumber() {
-        return traceNumber;
     }
 
     public String getQrId() {
@@ -64,7 +58,6 @@ public class Payment {
 
         private final String paymentId;
         private final String authorizationId;
-        private final String traceNumber;
         private final String qrId;
         private final String paymentMethodId;
         private final String sellerId;
@@ -74,7 +67,6 @@ public class Payment {
         public PaymentBuilder(PaymentOperation operation, PaymentAuthorization authorization) {
             this.paymentId = operation.getPaymentId();
             this.authorizationId = authorization.getId();
-            this.traceNumber = operation.getPaymentRequest().getTerminalData().getTraceNumber();
             this.qrId = operation.getQr().getId();
             this.paymentMethodId = operation.getPaymentMethod().getId();
             this.buyerId = operation.getBuyer().getId();
@@ -92,12 +84,12 @@ public class Payment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payment payment = (Payment) o;
-        return Objects.equals(paymentId, payment.paymentId) && Objects.equals(authorizationId, payment.authorizationId) && Objects.equals(traceNumber, payment.traceNumber) && Objects.equals(qrId, payment.qrId) && Objects.equals(paymentMethodId, payment.paymentMethodId) && Objects.equals(amount, payment.amount) && Objects.equals(buyerId, payment.buyerId) && Objects.equals(sellerId, payment.sellerId);
+        return Objects.equals(paymentId, payment.paymentId) && Objects.equals(authorizationId, payment.authorizationId) && Objects.equals(qrId, payment.qrId) && Objects.equals(paymentMethodId, payment.paymentMethodId) && Objects.equals(amount, payment.amount) && Objects.equals(buyerId, payment.buyerId) && Objects.equals(sellerId, payment.sellerId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(paymentId, authorizationId, traceNumber, qrId, paymentMethodId, amount, buyerId, sellerId);
+        return Objects.hash(paymentId, authorizationId, qrId, paymentMethodId, amount, buyerId, sellerId);
     }
 
     @Override
@@ -105,7 +97,6 @@ public class Payment {
         return "Payment{" +
                 "paymentId='" + paymentId + '\'' +
                 ", authorizationId='" + authorizationId + '\'' +
-                ", traceNumber='" + traceNumber + '\'' +
                 ", qrId='" + qrId + '\'' +
                 ", paymentMethodId='" + paymentMethodId + '\'' +
                 ", amount=" + amount +
